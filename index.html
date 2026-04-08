@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Aiman & Ayu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="Promise.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="lock-screen">
+        <div class="passport-container">
+            <img src="gambar/gambar2.jpeg" alt="Wedding Passport Cover" class="passport-cover">
+            <button onclick="bukaWebsite()" class="btn-open">
+                ✈ open
+            </button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="main-wrapper">
+            
+            <div class="top-row">
+                <div class="card passport-open-card" style="padding: 0; overflow: hidden; border-radius: 15px; border: none;">
+                    <img src="gambar/card.png" alt="Passport Open" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                
+                <div onclick="showModal('rsvp-modal')" class="card rsvp-trigger-card" style="padding: 0; overflow: hidden; border-radius: 15px; border: none; cursor: pointer;">
+                    <img src="gambar/rsvp.png" alt="Klik RSVP" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+            </div>
+
+            <div onclick="showModal('location-modal')" class="card location-trigger-card" style="padding: 0; overflow: hidden; border-radius: 15px; border: none; margin-top: 15px; cursor: pointer; position: relative;">
+                <img src="gambar/loc.png" alt="Klik Lokasi" style="width: 100%; height: 200px; object-fit: cover; display: block;">
+                <div style="position: absolute; bottom: 0; width: 100%; background: rgba(255,255,255,0.30); padding: 10px 0; color: #A2D9FF; font-weight: bold; text-align: center;">
+                    KLIK UNTUK LOKASI MAJLIS 📍
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 15px;">
+                <div class="card save-date-card">
+                    <h2 style="color: #A2D9FF; margin: 0;">Save the Date</h2>
+                    <p style="font-size: 1.5rem; font-weight: bold; margin: 10px 0;">02.05.26</p>
+                    <p>❤️</p>
+                </div>
+                <div class="card countdown-card">
+                    <h3 style="color: #A2D9FF;">BOARDING SOON</h3>
+                    <div id="countdown-timer" class="countdown-timer">
+                        <div><span id="days">00</span>Days</div>
+                        <div><span id="hours">00</span>Hrs</div>
+                        <div><span id="minutes">00</span>Min</div>
+                        <div><span id="seconds">00</span>Sec</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card gallery-card">
+                <h1 style="color: #A2D9FF;">OUR MOMENT</h1>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="gambar/gambar1.jpeg" alt="Gallery 1"></div>
+                        <div class="swiper-slide"><img src="gambar/gambar3.jpeg" alt="Gallery 2"></div>
+                        <div class="swiper-slide"><img src="gambar/gambar4.jpeg" alt="Gallery 3"></div>
+                        <div class="swiper-slide"><img src="gambar/gambar7.jpeg" alt="Gallery 4"></div>
+                        <div class="swiper-slide"><img src="gambar/gambar8.jpeg" alt="Gallery 5"></div>
+                        <div class="swiper-slide"><img src="gambar/gambar5.jpeg" alt="Gallery 6"></div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <div class="card ucapan-card" style="margin-bottom: 15px; background-color: #ffe5ec; border: 2px dashed #ffb3c6;">
+                <h2 style="color: #A2D9FF; font-size: 1.4rem; font-family: 'Georgia', serif; font-style: italic;">Untuk Awak...</h2>
+                <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">
+                    "Terima kasih sebab sentiasa sabar dan ada dengan saya. 
+                    Semoga perjalanan kita dipermudahkan. I love you more than words can say, baby. ❤️"
+                </p>
+                <p style="font-weight: bold; color: #A2D9FF; text-align: right; font-size: 0.9rem; margin: 0;">- Akmal -</p>
+            </div>
+
+            <div class="row">
+                <div onclick="showModal('contact-modal')" class="card contact-trigger-card" style="cursor: pointer;">
+                    <span class="icon">📞</span>
+                    <h3 style="color: #A2D9FF;">CONTACT</h3>
+                </div>
+                <div onclick="showModal('calendar-modal')" class="card calendar-trigger-card" style="cursor: pointer;">
+                    <span class="icon">📅</span>
+                    <h3 style="color: #A2D9FF;">CALENDAR</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="rsvp-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span onclick="hideModal('rsvp-modal')" class="close-btn">×</span>
+            <h2 style="color: #A2D9FF; text-align: center;">RSVP</h2>
+            <form id="rsvp-form" action="https://formspree.io/f/mnjgkrrd" method="POST">
+                <label>Nama Anda</label>
+                <input type="text" name="nama" placeholder="Sila masukkan nama" required>
+                <label>Kehadiran</label>
+                <select name="kehadiran">
+                    <option value="Hadir">Sudi Sangat! 😍</option>
+                    <option value="Tidak Hadir">Maaf, Tidak Dapat Hadir 😢</option>
+                </select>
+                <label>Bilangan Tetamu (Pax)</label>
+                <input type="number" name="pax" min="1" max="5" placeholder="Contoh: 2">
+                <button type="submit" id="submit-btn" class="btn">Hantar Jawapan ❤️</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="location-modal" class="modal-overlay">
+        <div class="modal-content text-center">
+            <span onclick="hideModal('location-modal')" class="close-btn">×</span>
+            <h2 style="color: #A2D9FF;">LOKASI MAJLIS</h2>
+            <p style="font-weight: bold; margin-bottom: 5px;">Lavender Event Space</p>
+            <p style="font-size: 0.9rem; margin-bottom: 20px;">80, Jalan Kempas Utama 2/2, Taman Kempas Utama, 81300 Skudai, Johor.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <a href="https://www.waze.com/ul?ll=1.5471,103.7126&navigate=yes" target="_blank" class="btn" style="background: #33ccff; margin: 0;">🚗 Buka Waze</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=1.5471,103.7126" target="_blank" class="btn" style="background: #4285F4; margin: 0;">📍 Google Maps</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar-modal" class="modal-overlay">
+        <div class="modal-content text-center">
+            <span onclick="hideModal('calendar-modal')" class="close-btn">×</span>
+            <h2 style="color: #A2D9FF;">ADD TO CALENDAR</h2>
+            <p style="font-weight: bold; font-size: 1.2rem;">SABTU, 2 May 2026</p>
+            <p>11.00 AM - 5.00 PM</p>
+            <div class="row">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walimatulurus+Aiman+%26+Ayu&dates=20260502T030000Z/20260502T090000Z&details=Lavender+Event+Space" target="_blank" class="btn btn-sm btn-outline">Google Calendar</a>
+                <a href="event.ics" download="WalimatulurusAimanAyu.ics" class="btn btn-sm btn-outline">Apple Calendar</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content text-center">
+            <span onclick="hideModal('contact-modal')" class="close-btn">×</span>
+            <h2 style="color: #A2D9FF;">CONTACT</h2>
+            <div class="contact-entry">
+                <p><b>Akmal</b></p>
+                <div class="row">
+                    <a href="tel:0134054975" class="btn-icon">📞</a>
+                    <a href="https://wa.me/60134054975" class="btn-icon">💬</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-popup" class="modal-overlay">
+        <div class="modal-content text-center">
+            <div class="pulse-heart">❤️</div>
+            <h1 style="color: #A2D9FF; font-size: 2rem;">Terima Kasih!</h1>
+            <p>Jawapan anda telah diterima.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

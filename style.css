@@ -1,0 +1,258 @@
+/* --- style.css (VERSI TEMA WHITE & SKY BLUE - KEMAS KINI) --- */
+
+:root {
+    --primary-white: #FFFFFF;
+    --sky-blue: #A2D9FF;        /* Biru Langit Cantik */
+    --deep-blue: #5B9BD5;       /* Biru Pekat Sikit (Untuk Tulisan) */
+    --soft-blue-bg: #F0F8FF;    /* Biru Sangat Cair (Latar Belakang) */
+    --text-dark: #33475b;       /* Kelabu Kebiruan (Lebih lembut dari hitam) */
+}
+
+body {
+    /* Guna font yang nampak moden & kemas */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--soft-blue-bg); 
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Reset untuk img */
+.img-responsive {
+    width: 100%;
+    height: auto;
+}
+
+/* ---================= 1. LOCK SCREEN (PASSPORT) =================--- */
+#lock-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--primary-white); 
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; z-index: 9999;
+    transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+#lock-screen.buka {
+    transform: translateY(-110%);
+}
+
+.passport-container {
+    text-align: center;
+    width: 90%;
+    max-width: 300px;
+    position: relative;
+}
+
+.passport-cover {
+    width: 100%;
+    height: auto;
+    /* Shadow ditukar ke warna biru malap */
+    filter: drop-shadow(0 10px 15px rgba(162, 217, 255, 0.4)); 
+}
+
+.btn-open {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--deep-blue);
+    border: 1px solid var(--sky-blue);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute; bottom: 10px; left: 50%;
+    transform: translateX(-50%);
+    transition: background 0.3s;
+}
+
+.btn-open:hover {
+    background-color: var(--soft-blue-bg);
+    border-color: var(--deep-blue);
+}
+
+/* ---================= 2. MAIN CONTENT =================--- */
+#main-content {
+    display: none;
+    position: relative; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: transparent;
+    z-index: 10;
+}
+
+#main-content.buka {
+    display: block;
+}
+
+.main-wrapper {
+    width: 90%;
+    max-width: 480px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 50px;
+}
+
+/* Gaya Kad - Putih & Blue Shadow */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(162, 217, 255, 0.2); 
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h1, h2, h3 { 
+    color: var(--deep-blue); /* Semua tajuk jadi Biru */
+    margin-top: 0; 
+}
+
+p { font-size: 0.95rem; line-height: 1.6; }
+
+/* Grid / Row Gaya */
+.row, .photo-row, .top-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Polaroid-style photos */
+.photo-row .polaroid {
+    border: 5px solid white;
+    box-shadow: 0 4px 10px rgba(162, 217, 255, 0.3);
+    transform: rotate(-3deg);
+    transition: transform 0.3s;
+}
+
+.photo-row img:last-child {
+    transform: rotate(3deg);
+}
+
+/* ---================= GALERI / SWIPER =================--- */
+/* --- FIX GAMBAR GALLERY TAK FIT --- */
+.swiper-slide img {
+    display: block;
+    width: 100%; 
+    height: 100%;
+    /* Tukar 'cover' kepada 'contain' supaya gambar nampak penuh */
+    object-fit: contain; 
+    /* Letak warna background putih/biru cair supaya bahagian kosong nampak bersih */
+    background-color: #ffffff; 
+}
+
+/* Lebihkan sikit tinggi container kalau gambar banyak yang portrait (menegak) */
+.swiper {
+    width: 100%;
+    height: 350px; /* Awak boleh adjust tinggi ni ikut kesesuaian gambar */
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: var(--deep-blue); /* Panah jadi Biru */
+}
+
+/* ---================= COUNTDOWN TIMER =================--- */
+/* --- COUNTDOWN TIMER (DIUBAH JADI SEBARIS) --- */
+.countdown-timer {
+    display: flex;
+    flex-direction: row;       /* Paksa beratur sebaris */
+    justify-content: center;   /* Letak di tengah-tengah */
+    align-items: baseline;     /* Selaraskan tulisan supaya kemas */
+    gap: 8px;                  /* Jarak antara setiap unit (Days, Hrs, etc) */
+    margin-top: 10px;
+}
+
+.countdown-timer div {
+    display: flex; 
+    flex-direction: row;       /* Nombor dan perkataan (cth: 54Days) duduk sebaris */
+    align-items: baseline;
+    font-size: 0.65rem;        /* Saiz tulisan label dikecilkan sikit supaya muat */
+    color: var(--text-dark);
+    gap: 2px;
+}
+
+.countdown-timer span {
+    font-size: 1.4rem;         /* Saiz nombor diselaraskan */
+    font-weight: bold;
+    color: var(--deep-blue);
+}
+
+/* ---================= 3. POP-UP MODALS & SUCCESS =================--- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(51, 71, 91, 0.6); /* Gelap kebiruan */
+    backdrop-filter: blur(3px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.modal-overlay.tunjuk {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--sky-blue); 
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 1.8rem;
+    color: var(--sky-blue);
+    cursor: pointer;
+}
+
+/* ---================= 4. GAYA UMUM (FORM & BUTTONS) =================--- */
+
+form label { font-size: 0.85rem; font-weight: bold; color: var(--deep-blue); margin-bottom: 5px; display: block; }
+
+input, textarea, select {
+    width: 100%; padding: 10px; margin-bottom: 12px;
+    border: 1px solid var(--sky-blue); 
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* Gaya Butang Biru */
+.btn {
+    background: var(--sky-blue);
+    color: white; border: none; padding: 12px; width: 100%;
+    border-radius: 25px; font-weight: bold; cursor: pointer;
+    transition: background 0.3s ease; text-decoration: none; display: block;
+    text-align: center; font-size: 1rem; margin-top: 10px;
+}
+.btn:hover { background: var(--deep-blue); }
+
+.btn-icon {
+    font-size: 2.2rem; text-decoration: none; cursor: pointer;
+    color: var(--deep-blue);
+}
+
+/* RUANGAN UCAPAN KHAS */
+.ucapan-card {
+    background-color: var(--primary-white) !important;
+    border: 2px dashed var(--sky-blue) !important;
+}
+
+/* PENTING: Gaya Gambar RSVP & Location */
+.rsvp-trigger-card, .location-trigger-card {
+    padding: 0; 
+    overflow: hidden; 
+}
