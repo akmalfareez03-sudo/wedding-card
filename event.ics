@@ -1,12 +1,14 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//WeddingAyuAiman//EN
+PRODID:-//Wedding Card//Ayes Live//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
 BEGIN:VEVENT
-UID:AyuAimanWeddingDay
+SUMMARY:Walimatulurus Aiman & Ayu
 DTSTART:20260502T030000Z
 DTEND:20260502T090000Z
 DTSTAMP:20240321T100000Z
-SUMMARY:Walimatulurus AyuAiman ❤️
-DESCRIPTION:Wedding day!!
+LOCATION:Lavender Event Space, 60, Jalan Kempas Utama 2/2, Taman Kempas Utama, 81300 Skudai, Johor
+DESCRIPTION:Majlis Kesyukuran Mohamad Aiman Igmal & Ayu Ameera. Ketibaan Pengantin: 12.00 PM.
 END:VEVENT
 END:VCALENDAR
