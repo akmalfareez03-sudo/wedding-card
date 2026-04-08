@@ -1,30 +1,26 @@
-/* --- style.css (VERSI TEMA WHITE & SKY BLUE - KEMAS KINI) --- */
+/* --- UNIVERSAL RESET (WAJIB ADA SUPAYA TAK TERKELUAR SKRIN) --- */
+* {
+    box-sizing: border-box; /* Kunci saiz supaya padding tak buat kotak jadi lebar */
+}
 
 :root {
     --primary-white: #FFFFFF;
-    --sky-blue: #A2D9FF;        /* Biru Langit Cantik */
-    --deep-blue: #5B9BD5;       /* Biru Pekat Sikit (Untuk Tulisan) */
-    --soft-blue-bg: #F0F8FF;    /* Biru Sangat Cair (Latar Belakang) */
-    --text-dark: #33475b;       /* Kelabu Kebiruan (Lebih lembut dari hitam) */
+    --sky-blue: #A2D9FF;
+    --deep-blue: #5B9BD5;
+    --soft-blue-bg: #F0F8FF;
+    --text-dark: #33475b;
 }
 
 body {
-    /* Guna font yang nampak moden & kemas */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--soft-blue-bg); 
     color: var(--text-dark);
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Halang skrin goyang ke kiri/kanan */
 }
 
-/* Reset untuk img */
-.img-responsive {
-    width: 100%;
-    height: auto;
-}
-
-/* ---================= 1. LOCK SCREEN (PASSPORT) =================--- */
+/* --- 1. LOCK SCREEN --- */
 #lock-screen {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(180deg, #ffffff 0%, #a2d9ff 100%); 
@@ -33,23 +29,11 @@ body {
     transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
-#lock-screen.buka {
-    transform: translateY(-110%);
-}
+#lock-screen.buka { transform: translateY(-110%); }
 
-.passport-container {
-    text-align: center;
-    width: 90%;
-    max-width: 300px;
-    position: relative;
-}
+.passport-container { text-align: center; width: 90%; max-width: 300px; position: relative; }
 
-.passport-cover {
-    width: 100%;
-    height: auto;
-    /* Shadow ditukar ke warna biru malap */
-    filter: drop-shadow(0 10px 15px rgba(162, 217, 255, 0.4)); 
-}
+.passport-cover { width: 100%; height: auto; filter: drop-shadow(0 10px 15px rgba(162, 217, 255, 0.4)); }
 
 .btn-open {
     background-color: rgba(255, 255, 255, 0.9);
@@ -62,25 +46,11 @@ body {
     cursor: pointer;
     position: absolute; bottom: 10px; left: 50%;
     transform: translateX(-50%);
-    transition: background 0.3s;
 }
 
-.btn-open:hover {
-    background-color: var(--soft-blue-bg);
-    border-color: var(--deep-blue);
-}
-
-/* ---================= 2. MAIN CONTENT =================--- */
-#main-content {
-    display: none;
-    position: relative; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: transparent;
-    z-index: 10;
-}
-
-#main-content.buka {
-    display: block;
-}
+/* --- 2. MAIN CONTENT --- */
+#main-content { display: none; width: 100%; }
+#main-content.buka { display: block; }
 
 .main-wrapper {
     width: 90%;
@@ -92,121 +62,74 @@ body {
     padding-bottom: 50px;
 }
 
-/* Gaya Kad - Putih & Blue Shadow */
+/* GAYA KAD */
 .card {
     background: white;
     padding: 20px;
-    border-radius: 20px; /* Lebih bulat sikit nampak lebih moden */
+    border-radius: 20px;
     box-shadow: 0 5px 15px rgba(162, 217, 255, 0.15); 
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Tulisan akan sentiasa di tengah secara menegak */
+    justify-content: center;
     align-items: center;
-    min-height: 120px; /* Pastikan semua kotak ada tinggi minima yang sama */
+    min-height: 120px;
 }
 
-h1, h2, h3 { 
-    color: var(--deep-blue); /* Semua tajuk jadi Biru */
-    margin-top: 0; 
-}
+h1, h2, h3 { color: var(--deep-blue); margin-top: 0; }
 
-p { font-size: 0.95rem; line-height: 1.6; }
-
-/* Grid / Row Gaya */
-.row {
-    display: flex; /* Guna flex untuk samakan tinggi automatik */
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.row .card {
-    flex: 1; /* Paksa kotak kiri & kanan kongsi ruang sama rata */
-    margin: 0;
-}
-.row, .photo-row, .top-row {
+/* FIX GRID/ROW */
+.row, .top-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-}
-
-/* Polaroid-style photos */
-.photo-row .polaroid {
-    border: 5px solid white;
-    box-shadow: 0 4px 10px rgba(162, 217, 255, 0.3);
-    transform: rotate(-3deg);
-    transition: transform 0.3s;
-}
-
-.photo-row img:last-child {
-    transform: rotate(3deg);
-}
-
-/* ---================= GALERI / SWIPER =================--- */
-/* --- FIX GAMBAR GALLERY TAK FIT --- */
-.swiper-slide img {
-    display: block;
-    width: 100%; 
-    height: 100%;
-    /* Tukar 'cover' kepada 'contain' supaya gambar nampak penuh */
-    object-fit: contain; 
-    /* Letak warna background putih/biru cair supaya bahagian kosong nampak bersih */
-    background-color: #ffffff; 
-}
-
-/* Lebihkan sikit tinggi container kalau gambar banyak yang portrait (menegak) */
-.swiper {
     width: 100%;
-    height: 350px; /* Awak boleh adjust tinggi ni ikut kesesuaian gambar */
-    border-radius: 10px;
-    background: #ffffff;
 }
 
-.swiper-button-next, .swiper-button-prev {
-    color: var(--deep-blue); /* Panah jadi Biru */
-}
+/* GALERI */
+.swiper { width: 100%; height: 350px; border-radius: 10px; background: #ffffff; }
+.swiper-slide img { width: 100%; height: 100%; object-fit: contain; background-color: #ffffff; }
 
-/* ---================= COUNTDOWN TIMER =================--- */
-/* --- COUNTDOWN TIMER (DIUBAH JADI SEBARIS) --- */
+/* --- 3. COUNTING DAYS (SEBARIS & KEMAS) --- */
 .countdown-timer {
     display: flex;
-    flex-direction: row;       /* Paksa beratur sebaris */
-    justify-content: center;   /* Letak di tengah-tengah */
-    align-items: baseline;     /* Selaraskan tulisan supaya kemas */
-    gap: 8px;                  /* Jarak antara setiap unit (Days, Hrs, etc) */
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 8px;
     margin-top: 10px;
 }
 
 .countdown-timer div {
     display: flex; 
-    flex-direction: row;       /* Nombor dan perkataan (cth: 54Days) duduk sebaris */
+    flex-direction: row;
     align-items: baseline;
-    font-size: 0.65rem;        /* Saiz tulisan label dikecilkan sikit supaya muat */
+    font-size: 0.65rem;
     color: var(--text-dark);
     gap: 2px;
 }
 
 .countdown-timer span {
-    font-size: 1.4rem;         /* Saiz nombor diselaraskan */
+    font-size: 1.4rem;
     font-weight: bold;
     color: var(--deep-blue);
 }
 
-/* ---================= 3. POP-UP MODALS & SUCCESS =================--- */
+/* --- 4. FIX POP-UP MODALS (PENYELAMAT) --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(51, 71, 91, 0.6); /* Gelap kebiruan */
-    backdrop-filter: blur(3px);
+    background-color: rgba(51, 71, 91, 0.8);
+    backdrop-filter: blur(5px);
     z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 15px; /* Buffer tepi skrin */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s ease;
+    transition: 0.3s;
 }
 
 .modal-overlay.tunjuk {
@@ -218,114 +141,61 @@ p { font-size: 0.95rem; line-height: 1.6; }
     background: white;
     padding: 25px;
     border-radius: 20px;
-    width: 95%;
+    width: 100%; /* Guna padding overlay sebagai limit */
     max-width: 400px;
     position: relative;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--sky-blue); 
+    border: 1px solid var(--sky-blue);
+    max-height: 90vh; /* Elak terkeluar bawah */
+    overflow-y: auto; /* Boleh scroll kalau teks panjang */
 }
 
 .close-btn {
     position: absolute;
-    top: 15px; right: 20px;
+    top: 10px; right: 15px;
     font-size: 1.8rem;
     color: var(--sky-blue);
     cursor: pointer;
+    z-index: 10;
 }
 
-/* ---================= 4. GAYA UMUM (FORM & BUTTONS) =================--- */
-
-form label { font-size: 0.85rem; font-weight: bold; color: var(--deep-blue); margin-bottom: 5px; display: block; }
-
+/* --- 5. FORM & BUTTONS --- */
 input, textarea, select {
-    width: 100%; padding: 10px; margin-bottom: 12px;
+    width: 100%; padding: 12px; margin-bottom: 12px;
     border: 1px solid var(--sky-blue); 
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 12px;
+    font-size: 1rem;
 }
 
-/* Gaya Butang Biru */
 .btn {
     background: var(--sky-blue);
-    color: white; border: none; padding: 12px; width: 100%;
+    color: white; border: none; padding: 14px; width: 100%;
     border-radius: 25px; font-weight: bold; cursor: pointer;
-    transition: background 0.3s ease; text-decoration: none; display: block;
-    text-align: center; font-size: 1rem; margin-top: 10px;
-}
-.btn:hover { background: var(--deep-blue); }
-
-.btn-icon {
-    font-size: 2.2rem; text-decoration: none; cursor: pointer;
-    color: var(--deep-blue);
+    text-decoration: none; display: block; text-align: center;
 }
 
-/* RUANGAN UCAPAN KHAS */
-/* --- RUANGAN UCAPAN (CLEAN LOOK) --- */
 .ucapan-card {
     background-color: white !important;
-    border: none !important; /* BUANG GARIS PUTUS-PUTUS */
+    border: none !important;
     padding: 30px 20px !important;
     box-shadow: 0 5px 15px rgba(162, 217, 255, 0.15);
 }
 
-.ucapan-card h2 {
-    margin-bottom: 20px;
-}
-
-/* PENTING: Gaya Gambar RSVP & Location */
-.rsvp-trigger-card, .location-trigger-card {
-    padding: 0; 
-    overflow: hidden; 
-}
-/* --- FIX UNTUK TELEFON (SCREEN KECIL) --- */
+/* --- 6. KHAS UNTUK TELEFON (FINAL TOUCH) --- */
 @media (max-width: 480px) {
-    /* 1. Kecilkan padding dalam card supaya ada lebih ruang tulisan */
-    .card {
-        padding: 15px 10px !important;
-    }
+    .main-wrapper { gap: 10px; margin: 15px auto; }
+    
+    .card { padding: 15px 5px !important; min-height: 110px; }
+    
+    .card h2, .card h3 { font-size: 0.85rem !important; }
+    
+    .countdown-timer { gap: 4px !important; }
+    
+    .countdown-timer span { font-size: 1.1rem !important; }
+    
+    .countdown-timer div { font-size: 0.55rem !important; }
 
-    /* 2. Kecilkan saiz tajuk 'Save the Date' & 'Boarding Soon' */
-    .card h2, .card h3 {
-        font-size: 0.9rem !important;
-        letter-spacing: 0px !important;
-    }
-
-    /* 3. Kecilkan saiz nombor countdown supaya muat sebaris */
-    .countdown-timer span {
-        font-size: 1.1rem !important;
-    }
-
-    /* 4. Kecilkan label (Days, Hrs, etc.) */
-    .countdown-timer div {
-        font-size: 0.55rem !important;
-        gap: 2px !important;
-    }
-
-    /* 5. Kecilkan gap antara card kiri & kanan */
-    .row {
-        gap: 10px !important;
-    }
-}/* --- FIX POP-UP TERKELUAR PADA TELEFON --- */
-@media (max-width: 480px) {
     .modal-content {
-        width: 90% !important;     /* Pastikan lebar pop-up tidak lebih 90% skrin */
-        padding: 20px 15px !important; /* Kurangkan ruang kosong di kiri & kanan */
-        max-height: 85vh;          /* Elakkan pop-up terlalu panjang ke bawah */
-        overflow-y: auto;          /* Tambah scroll jika kandungan panjang */
-    }
-
-    .modal-content h2 {
-        font-size: 1.4rem !important; /* Kecilkan sedikit tajuk pop-up */
-        margin-bottom: 15px !important;
-    }
-
-    .modal-content p {
-        font-size: 0.85rem !important; /* Kecilkan saiz alamat/teks */
-    }
-
-    /* Pastikan butang dalam pop-up muat sebaris/setempat */
-    .modal-content .btn {
-        padding: 10px !important;
-        font-size: 0.9rem !important;
+        padding: 20px 15px; /* Kecilkan sikit padding dalam modal */
     }
 }
