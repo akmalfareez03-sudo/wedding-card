@@ -116,38 +116,55 @@ h1, h2, h3 { color: var(--deep-blue); margin-top: 0; }
 }
 
 /* --- 4. FIX POP-UP MODALS (PENYELAMAT) --- */
+/* --- FIX POP-UP TEGAR (FORCED CENTER) --- */
+
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(51, 71, 91, 0.8);
-    backdrop-filter: blur(5px);
+    top: 0;
+    left: 0;
+    width: 100vw; /* Guna viewport width */
+    height: 100vh; /* Guna viewport height */
+    background-color: rgba(51, 71, 91, 0.85);
+    backdrop-filter: blur(8px);
     z-index: 10000;
-    display: flex;
+    display: none; /* Kita guna display flex masa 'tunjuk' */
     justify-content: center;
     align-items: center;
-    padding: 15px; /* Buffer tepi skrin */
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
+    padding: 15px; /* Benteng tepi skrin */
+    box-sizing: border-box;
 }
 
+/* Guna class ni bila modal dibuka */
 .modal-overlay.tunjuk {
+    display: flex !important; 
     opacity: 1;
     visibility: visible;
 }
 
 .modal-content {
-    background: white;
+    background: #FFFFFF;
     padding: 25px;
     border-radius: 20px;
-    width: 100%; /* Guna padding overlay sebagai limit */
-    max-width: 400px;
+    width: 100% !important; /* Paksa ikut lebar skrin */
+    max-width: 380px;      /* Jangan lebih lebar dari kotak main-wrapper */
     position: relative;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--sky-blue);
-    max-height: 90vh; /* Elak terkeluar bawah */
-    overflow-y: auto; /* Boleh scroll kalau teks panjang */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 1.5px solid var(--sky-blue);
+    
+    /* PENTING: Halang terkeluar skrin */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+    
+    max-height: 85vh; /* Elak terkeluar bawah skrin phone */
+    overflow-y: auto; /* Boleh scroll dalam pop-up */
+}
+
+/* Untuk skrin phone yang sangat kecil */
+@media screen and (max-width: 360px) {
+    .modal-content {
+        padding: 20px 15px;
+    }
 }
 
 .close-btn {
