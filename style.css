@@ -277,3 +277,32 @@ input, textarea, select {
     padding: 0; 
     overflow: hidden; 
 }
+/* --- FIX UNTUK TELEFON (SCREEN KECIL) --- */
+@media (max-width: 480px) {
+    /* 1. Kecilkan padding dalam card supaya ada lebih ruang tulisan */
+    .card {
+        padding: 15px 10px !important;
+    }
+
+    /* 2. Kecilkan saiz tajuk 'Save the Date' & 'Boarding Soon' */
+    .card h2, .card h3 {
+        font-size: 0.9rem !important;
+        letter-spacing: 0px !important;
+    }
+
+    /* 3. Kecilkan saiz nombor countdown supaya muat sebaris */
+    .countdown-timer span {
+        font-size: 1.1rem !important;
+    }
+
+    /* 4. Kecilkan label (Days, Hrs, etc.) */
+    .countdown-timer div {
+        font-size: 0.55rem !important;
+        gap: 2px !important;
+    }
+
+    /* 5. Kecilkan gap antara card kiri & kanan */
+    .row {
+        gap: 10px !important;
+    }
+}
