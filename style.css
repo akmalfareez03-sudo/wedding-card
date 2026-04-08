@@ -305,4 +305,27 @@ input, textarea, select {
     .row {
         gap: 10px !important;
     }
+}/* --- FIX POP-UP TERKELUAR PADA TELEFON --- */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 90% !important;     /* Pastikan lebar pop-up tidak lebih 90% skrin */
+        padding: 20px 15px !important; /* Kurangkan ruang kosong di kiri & kanan */
+        max-height: 85vh;          /* Elakkan pop-up terlalu panjang ke bawah */
+        overflow-y: auto;          /* Tambah scroll jika kandungan panjang */
+    }
+
+    .modal-content h2 {
+        font-size: 1.4rem !important; /* Kecilkan sedikit tajuk pop-up */
+        margin-bottom: 15px !important;
+    }
+
+    .modal-content p {
+        font-size: 0.85rem !important; /* Kecilkan saiz alamat/teks */
+    }
+
+    /* Pastikan butang dalam pop-up muat sebaris/setempat */
+    .modal-content .btn {
+        padding: 10px !important;
+        font-size: 0.9rem !important;
+    }
 }
