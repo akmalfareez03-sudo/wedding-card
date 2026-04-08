@@ -78,7 +78,6 @@ function mulaCountdown() {
             document.getElementById('days').innerHTML = "00";
             document.getElementById('hours').innerHTML = "00";
             document.getElementById('minutes').innerHTML = "00";
-            document.getElementById('seconds').innerHTML = "00";
             return;
         }
         
@@ -86,13 +85,11 @@ function mulaCountdown() {
         const kiraHari = Math.floor(jarakMilisaat / (1000 * 60 * 60 * 24));
         const kiraJam = Math.floor((jarakMilisaat % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const kiraMinit = Math.floor((jarakMilisaat % (1000 * 60 * 60)) / (1000 * 60));
-        const kiraSaat = Math.floor((jarakMilisaat % (1000 * 60)) / 1000);
         
         // Update dalam fail HTML
         document.getElementById('days').innerHTML = formatNombor(kiraHari);
         document.getElementById('hours').innerHTML = formatNombor(kiraJam);
         document.getElementById('minutes').innerHTML = formatNombor(kiraMinit);
-        document.getElementById('seconds').innerHTML = formatNombor(kiraSaat);
         
     }, 1000); // 1000ms = 1s
 }
