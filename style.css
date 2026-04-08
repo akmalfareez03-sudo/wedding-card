@@ -277,4 +277,32 @@ input, textarea, select {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     align-items: stretch;   /* Paksa semua kotak dalam baris yang sama jadi sama tinggi */
+}/* --- PASANG GAMBAR BACKGROUND COUNTDOWN CARD --- */
+.countdown-card {
+    background-image: url('gambar/image_02aa4d.jpg') !important; /* Pastikan path gambar betul */
+    background-size: cover;      /* Paksa gambar penuhkan kotak tanpa penyek */
+    background-position: center; /* Gambar duduk tengah-tengah kotak */
+    position: relative;
+    border: none;                /* Buang sempadan asal */
+    box-shadow: 0 5px 15px rgba(162, 217, 255, 0.2);
+}
+
+/* --- KEMASKAN TULISAN AGAR JELAS (PENTING!) --- */
+
+/* Tukar tajuk 'COUNTING DAYS' jadi putih supaya jelas */
+.countdown-card h3 {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Tambah shadow supaya menonjol */
+}
+
+/* Tukar nombor countdown jadi putih/biru cair */
+.countdown-timer span {
+    color: white !important; /* Atau guna #A2D9FF kalau nak kekal biru cair */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Tukar label (Days, Hrs, Min) jadi putih/biru cair */
+.countdown-timer div {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
