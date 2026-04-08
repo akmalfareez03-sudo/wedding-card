@@ -17,7 +17,7 @@
         <div class="passport-container">
             <img src="gambar/gambar2.jpeg" alt="Wedding Passport Cover" class="passport-cover">
             <button onclick="bukaWebsite()" class="btn-open">
-                ✈ open
+                open
             </button>
         </div>
     </div>
@@ -75,10 +75,9 @@
             </div>
 
             <div class="card ucapan-card" style="margin-bottom: 15px; background-color: #ffe5ec; border: 2px dashed #ffb3c6;">
-                <h2 style="color: #A2D9FF; font-size: 1.4rem; font-family: 'Georgia', serif; font-style: italic;">Untuk Awak...</h2>
+                <h2 style="color: #A2D9FF; font-size: 1.4rem; font-family: 'Georgia', serif; font-style: italic;">Assalamualaikum</h2>
                 <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">
-                    "Terima kasih sebab sentiasa sabar dan ada dengan saya. 
-                    Semoga perjalanan kita dipermudahkan. I love you more than words can say, baby. ❤️"
+                    Semoga dengan kehadiran kalian, dapat menyerikan lagi majlis kami
                 </p>
                 <p style="font-weight: bold; color: #A2D9FF; text-align: right; font-size: 0.9rem; margin: 0;">- Ayu&Aiman -</p>
             </div>
@@ -100,7 +99,7 @@
         <div class="modal-content">
             <span onclick="hideModal('rsvp-modal')" class="close-btn">×</span>
             <h2 style="color: #A2D9FF; text-align: center;">RSVP</h2>
-            <form id="rsvp-form" action="https://formspree.io/f/mnjgkrrd" method="POST">
+            <form id="rsvp-form" action="https://formspree.io/f/mvzvybep" method="POST">
                 <label>Nama Anda</label>
                 <input type="text" name="nama" placeholder="Sila masukkan nama" required>
                 <label>Kehadiran</label>
@@ -110,6 +109,8 @@
                 </select>
                 <label>Bilangan Tetamu (Pax)</label>
                 <input type="number" name="pax" min="1" max="5" placeholder="Contoh: 2">
+                <label>Ucapan / Doa Buat Pengantin</label>
+    <textarea name="ucapan" placeholder="Tulis ucapan anda di sini..." rows="3"></textarea>
                 <button type="submit" id="submit-btn" class="btn">Hantar Jawapan ❤️</button>
             </form>
         </div>
@@ -142,18 +143,27 @@
     </div>
 
     <div id="contact-modal" class="modal-overlay">
-        <div class="modal-content text-center">
-            <span onclick="hideModal('contact-modal')" class="close-btn">×</span>
-            <h2 style="color: #A2D9FF;">CONTACT</h2>
-            <div class="contact-entry">
-                <p><b>Akmal</b></p>
-                <div class="row">
-                    <a href="tel:0134054975" class="btn-icon">📞</a>
-                    <a href="https://wa.me/60134054975" class="btn-icon">💬</a>
-                </div>
+    <div class="modal-content text-center">
+        <span onclick="hideModal('contact-modal')" class="close-btn">×</span>
+        <h2 style="color: #A2D9FF; margin-bottom: 20px;">CONTACT</h2>
+
+        <div class="contact-entry" style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+            <p style="font-weight: bold; font-size: 1.1rem; margin-bottom: 10px;">Qayyum</p>
+            <div style="display: flex; justify-content: center; gap: 20px;">
+                <a href="tel:0166717797" class="btn-icon">📞</a>
+                <a href="https://wa.me/0166717797" class="btn-icon">💬</a>
+            </div>
+        </div>
+
+        <div class="contact-entry"> 
+            <p style="font-weight: bold; font-size: 1.1rem; margin-bottom: 10px;">Afliq</p>
+            <div style="display: flex; justify-content: center; gap: 20px;">
+                <a href="tel:0196872877" class="btn-icon">📞</a>
+                <a href="https://wa.me/0196872877" class="btn-icon">💬</a>
             </div>
         </div>
     </div>
+</div>  
 
     <div id="success-popup" class="modal-overlay">
         <div class="modal-content text-center">

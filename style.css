@@ -159,6 +159,30 @@ h1, h2, h3 { color: var(--deep-blue); margin-top: 0; }
     max-height: 85vh; /* Elak terkeluar bawah skrin phone */
     overflow-y: auto; /* Boleh scroll dalam pop-up */
 }
+/* --- TAMBAHAN BARU: RSVP & CONTACT --- */
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--sky-blue); 
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: none;
+    background-color: #fcfdfe;
+}
+
+.contact-entry {
+    padding: 10px;
+    background: #f9fcff;
+    border-radius: 15px;
+}
+
+.btn-icon {
+    font-size: 2rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
 
 /* Untuk skrin phone yang sangat kecil */
 @media screen and (max-width: 360px) {
