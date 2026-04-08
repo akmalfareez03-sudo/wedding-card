@@ -96,10 +96,14 @@ body {
 .card {
     background: white;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(162, 217, 255, 0.2); 
+    border-radius: 20px; /* Lebih bulat sikit nampak lebih moden */
+    box-shadow: 0 5px 15px rgba(162, 217, 255, 0.15); 
     text-align: center;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Tulisan akan sentiasa di tengah secara menegak */
+    align-items: center;
+    min-height: 120px; /* Pastikan semua kotak ada tinggi minima yang sama */
 }
 
 h1, h2, h3 { 
@@ -110,6 +114,16 @@ h1, h2, h3 {
 p { font-size: 0.95rem; line-height: 1.6; }
 
 /* Grid / Row Gaya */
+.row {
+    display: flex; /* Guna flex untuk samakan tinggi automatik */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.row .card {
+    flex: 1; /* Paksa kotak kiri & kanan kongsi ruang sama rata */
+    margin: 0;
+}
 .row, .photo-row, .top-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -246,9 +260,16 @@ input, textarea, select {
 }
 
 /* RUANGAN UCAPAN KHAS */
+/* --- RUANGAN UCAPAN (CLEAN LOOK) --- */
 .ucapan-card {
-    background-color: var(--primary-white) !important;
-    border: 2px dashed var(--sky-blue) !important;
+    background-color: white !important;
+    border: none !important; /* BUANG GARIS PUTUS-PUTUS */
+    padding: 30px 20px !important;
+    box-shadow: 0 5px 15px rgba(162, 217, 255, 0.15);
+}
+
+.ucapan-card h2 {
+    margin-bottom: 20px;
 }
 
 /* PENTING: Gaya Gambar RSVP & Location */
