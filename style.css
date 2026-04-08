@@ -253,4 +253,28 @@ input, textarea, select {
 
 .close-btn:hover {
     transform: scale(1.2) rotate(90deg); /* Pusing sikit bila hover */
+}/* --- PAKSA GAMBAR FIT PENUH DALAM KOTAK --- */
+.visual-card {
+    padding: 0 !important;
+    overflow: hidden;
+    border: none;
+    background: white;
+    display: flex;          /* Gunakan flex supaya kandungan di dalam boleh 'stretch' */
+    flex-direction: column;
+    height: 100%;           /* Paksa kotak ikut tinggi row */
+}
+
+.visual-card img {
+    width: 100%;
+    height: 100%;           /* Paksa gambar penuh ke bawah */
+    display: block;
+    object-fit: cover;      /* RAHSIA: Gambar akan penuh tanpa jadi penyek (crop sikit tepi) */
+}
+
+/* Pastikan row aturcara ni stabil */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    align-items: stretch;   /* Paksa semua kotak dalam baris yang sama jadi sama tinggi */
 }
