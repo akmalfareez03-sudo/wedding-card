@@ -2,7 +2,7 @@
 
 // --- 1. SET TARIKH COUNTDOWN (Sila tukar ke tarikh anniversary korang) ---
 // Format: Tahun, Bulan (0 = Jan, 1 = Feb, etc.), Hari, Jam, Minit, Saat
-const tarikhAnniversary = new Date(2026, 5, 2, 0, 0, 0).getTime();
+const tarikhAnniversary = new Date(2026, 4, 2, 0, 0, 0).getTime();
 
 //================= A. MULA & ANIMASI PASSPORT (KLIK PERTAMA) =================//
 function bukaWebsite() {
