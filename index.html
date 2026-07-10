@@ -3,19 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secured Area</title>
+    <title>For You, My Love</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="login-page">
+<body class="pin-page">
 
-    <div id="loginScreen">
-        <h2>Restricted Access</h2>
-        <input type="password" id="passwordInput" placeholder="Masukkan Password">
-        <br>
-        <button id="loginBtn">Buka</button>
-        <p id="errorMsg">Salah password tu sayang! Cuba lagi.</p>
+    <div id="pinScreen">
+        <div class="pin-header">
+            <div class="flower-icon">🌸</div>
+            <h2>For You, My Love</h2>
+            <p>Enter our secret code</p>
+        </div>
+
+        <div class="pin-dots" id="pinDots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="keypad">
+            <button class="key" onclick="addNumber(1)">1</button>
+            <button class="key" onclick="addNumber(2)">2</button>
+            <button class="key" onclick="addNumber(3)">3</button>
+            <button class="key" onclick="addNumber(4)">4</button>
+            <button class="key" onclick="addNumber(5)">5</button>
+            <button class="key" onclick="addNumber(6)">6</button>
+            <button class="key" onclick="addNumber(7)">7</button>
+            <button class="key" onclick="addNumber(8)">8</button>
+            <button class="key" onclick="addNumber(9)">9</button>
+            <button class="key invisible"></button>
+            <button class="key" onclick="addNumber(0)">0</button>
+            <button class="key" onclick="deleteNumber()">⌫</button>
+        </div>
+        
+        <p class="hint-text">Hint: our special date 🤍</p>
     </div>
 
-    <script src="script.js" defer></script>
+    <div id="loadingScreen" style="display: none;">
+        <div class="loading-flower">🌸</div>
+        <p>Preparing something special for you...</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

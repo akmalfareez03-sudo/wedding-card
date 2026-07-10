@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, My Love</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="main-page">
+
+    <div id="floatingFlowersContainer"></div>
+
+    <div id="giftScreen">
+        <p class="gift-hint">Tap the gift box to open it 🎁</p>
+        
+        <div class="gift-wrapper" id="giftWrapper" onclick="openGift()">
+            <div class="sparkles">✨ ✨ ✨</div>
+            <div class="gift-box">
+                <div class="gift-bow-left"></div>
+                <div class="gift-bow-right"></div>
+                <div class="gift-bow-center"></div>
+                <div class="gift-lid"></div>
+                <div class="gift-ribbon-x"></div>
+                <div class="gift-ribbon-y"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainScrollContent" style="display: none; opacity: 0;">
+        
+        <header class="hero-section">
+            <span class="small-text">🌸 Your Special Day 🌸</span>
+            <h1 class="bday-title">Happy Birthday<br>Sayang</h1>
+            <div class="divider"></div>
+            <span class="small-text">THE MOST SPECIAL DAY</span>
+            
+            <div class="scroll-down">
+                <p>SCROLL</p>
+                <span>↓</span>
+            </div>
+        </header>
+
+        <section class="digital-bouquet">
+            <span class="small-text">— MY FIRST GIFT —</span>
+            <h2>A Digital Bouquet</h2>
+            <p class="subtitle">Each flower holds a little message just for you</p>
+            
+            <div class="vase-container">
+                <!-- Batang Bunga -->
+                <div class="stem s1"></div>
+                <div class="stem s2"></div>
+                <div class="stem s3"></div>
+                <div class="stem s4"></div>
+                <div class="stem s5"></div>
+
+                <!-- Bunga (Disusun semula posisinya) -->
+                <div class="flower f1" onclick="showFlowerMsg('You are the finest rose that ever bloomed — full of love and unmatched beauty. 🌹')">🌹</div>
+                <div class="flower f2" onclick="showFlowerMsg('Like a sunflower, you always turn toward the light and share your warmth. 🌻')">🌻</div>
+                <div class="flower f3" onclick="showFlowerMsg('You are as beautiful as cherry blossoms — lovely and bringing joy wherever you go. 🌸')">🌸</div>
+                <div class="flower f4" onclick="showFlowerMsg('May your life always be filled with colorful moments just like these flowers. 🌷')">🌷</div>
+                <div class="flower f5" onclick="showFlowerMsg('I am grateful for every single day I get to spend with you. 🌼')">🌼</div>
+                
+                <!-- Pasu Bentuk Mickey -->
+                <div class="vase"></div>
+            </div>
+
+            <!-- Kotak Mesej -->
+            <div id="flowerMessageContainer" class="message-box">
+                <span style="opacity: 0.5;">Touch each flower to reveal its message</span>
+            </div>
+        </section>
+
+        <div style="height: 50vh;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
