@@ -1,42 +1,9 @@
-/* --- TETAPAN UMUM --- */
-body, html {
-    margin: 0; padding: 0;
-    width: 100%; height: 100%;
-    background-color: #3d1c31; 
-    font-family: 'Georgia', serif; 
-    color: #ffd6e8;
-    overflow: hidden; 
-}
+body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #3d1c31; font-family: 'Georgia', serif; color: #ffd6e8; overflow-x: hidden; scroll-behavior: smooth;}
+#floatingFlowersContainer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.floating-flower { position: absolute; bottom: -50px; opacity: 0; animation: floatUp linear forwards; }
+@keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+#giftScreen, #mainScrollContent, #pinScreen, #loadingScreen { position: relative; z-index: 10; }
 
-#floatingFlowersContainer {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; 
-    z-index: 1; 
-    overflow: hidden;
-}
-
-.floating-flower {
-    position: absolute;
-    bottom: -50px;
-    opacity: 0;
-    animation: floatUp linear forwards; 
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-}
-
-#giftScreen, #mainScrollContent, #pinScreen, #loadingScreen {
-    position: relative;
-    z-index: 10;
-}
-
-/* --- SKRIN PIN & LOADING --- */
 body.pin-page { display: flex; flex-direction: column; justify-content: center; align-items: center; }
 #pinScreen { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 400px; }
 .pin-header { text-align: center; margin-bottom: 30px; }
@@ -52,12 +19,10 @@ body.pin-page { display: flex; flex-direction: column; justify-content: center; 
 .key:active { background: rgba(255, 153, 204, 0.2); }
 .key.invisible { visibility: hidden; }
 .hint-text { font-size: 0.8rem; opacity: 0.6; }
-
 #loadingScreen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #3d1c31; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
 .loading-flower { font-size: 3rem; animation: spin 2s linear infinite; margin-bottom: 20px; }
 @keyframes spin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
 
-/* --- KOTAK HADIAH --- */
 body.main-page { overflow-y: auto; }
 #giftScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #3d1c31; z-index: 50; transition: opacity 1s ease-out; }
 .gift-hint { margin-bottom: 50px; opacity: 0.8; animation: pulse 2s infinite; font-size: 1.1rem; letter-spacing: 1px; }
@@ -77,112 +42,146 @@ body.main-page { overflow-y: auto; }
 .gift-bow-left { left: 30px; border-radius: 50% 50% 0 50%; transform: rotate(-30deg); }
 .gift-bow-right { left: 80px; border-radius: 50% 50% 50% 0; transform: rotate(30deg); }
 
-/* --- HERO SCROLL --- */
 #mainScrollContent { width: 100%; max-width: 500px; margin: 0 auto; padding: 20px; box-sizing: border-box; transition: opacity 1.5s ease-in; }
 .hero-section { text-align: center; padding: 80px 0 50px 0; }
 .bday-title { font-size: 3rem; color: #ffb3d9; margin: 15px 0; font-family: 'Times New Roman', Times, serif; font-weight: normal; }
-.small-text { font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; }
+.small-text { font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; display: block; }
 .divider { width: 50px; height: 1px; background-color: #ff99cc; margin: 20px auto; }
 .scroll-down { margin-top: 60px; opacity: 0.6; animation: bounce 2s infinite; }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
 
-/* --- UPGRADED DIGITAL BOUQUET --- */
-.digital-bouquet {
-    text-align: center;
-    margin-top: 50px;
-    padding-bottom: 50px;
-    border-bottom: 1px solid rgba(255, 153, 204, 0.2);
-}
-.digital-bouquet h2 { font-weight: normal; color: #ffb3d9; margin-bottom: 5px; }
+.digital-bouquet, .letter-section, .photo-memories, .timeline-section, .playlist-section, .jar-section, .closing-section { text-align: center; margin-top: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 153, 204, 0.15); }
+.digital-bouquet h2, .letter-section h2, .photo-memories h2, .timeline-section h2, .playlist-section h2, .jar-section h2 { font-weight: normal; color: #ffb3d9; margin-bottom: 10px; margin-top: 5px; }
 .subtitle { font-size: 0.9rem; opacity: 0.8; margin-bottom: 40px; }
-
-.vase-container {
-    position: relative;
-    width: 200px;
-    height: 280px;
-    margin: 0 auto;
-}
-
-/* Pasu Bentuk Mickey (Kecerunan Pink) */
-.vase {
-    position: absolute;
-    bottom: 10px; left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 80px;
-    background: linear-gradient(135deg, #ff4d94, #99003d);
-    border-radius: 50%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset -10px -10px 15px rgba(0,0,0,0.2);
-    z-index: 5;
-}
-.vase::before, .vase::after {
-    content: '';
-    position: absolute;
-    width: 45px; height: 45px;
-    background: linear-gradient(135deg, #ff4d94, #99003d);
-    border-radius: 50%;
-    top: -10px;
-    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
-}
+.vase-container { position: relative; width: 200px; height: 280px; margin: 0 auto; }
+.vase { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 80px; height: 80px; background: linear-gradient(135deg, #ff4d94, #99003d); border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset -10px -10px 15px rgba(0,0,0,0.2); z-index: 5; }
+.vase::before, .vase::after { content: ''; position: absolute; width: 45px; height: 45px; background: linear-gradient(135deg, #ff4d94, #99003d); border-radius: 50%; top: -10px; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2); }
 .vase::before { left: -15px; }
 .vase::after { right: -15px; }
-
-/* Batang Hijau */
-.stem {
-    position: absolute;
-    bottom: 60px;
-    width: 4px;
-    background-color: #4d9900; /* Hijau batang */
-    border-radius: 2px;
-    z-index: 1;
-}
+.stem { position: absolute; bottom: 60px; width: 4px; background-color: #4d9900; border-radius: 2px; z-index: 1; }
 .s1 { height: 160px; left: 100px; transform: rotate(-5deg); }
 .s2 { height: 130px; left: 75px; transform: rotate(-25deg); }
 .s3 { height: 140px; left: 125px; transform: rotate(20deg); }
 .s4 { height: 100px; left: 55px; transform: rotate(-45deg); }
 .s5 { height: 110px; left: 140px; transform: rotate(40deg); }
-
-/* Bunga Berbuai */
-.flower {
-    position: absolute;
-    font-size: 3rem;
-    cursor: pointer;
-    transition: 0.3s;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-    z-index: 6;
-    animation: sway 4s infinite alternate ease-in-out;
-}
-.flower:hover {
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
-    animation-play-state: paused;
-}
-
-@keyframes sway {
-    0% { transform: translateY(0px) rotate(-5deg); }
-    100% { transform: translateY(-8px) rotate(5deg); }
-}
-
-/* Koordinat Bunga (Dipadankan dengan hujung batang) */
+.flower { position: absolute; font-size: 3rem; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)); z-index: 6; animation: sway 4s infinite alternate ease-in-out; }
+.flower:hover { transform: scale(1.2); filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); animation-play-state: paused; }
+@keyframes sway { 0% { transform: translateY(0px) rotate(-5deg); } 100% { transform: translateY(-8px) rotate(5deg); } }
 .f1 { top: 25px; left: 76px; animation-delay: 0s; }
 .f2 { top: 60px; left: 35px; animation-delay: 0.5s; font-size: 2.8rem; }
 .f3 { top: 55px; left: 125px; animation-delay: 1s; font-size: 2.7rem; }
 .f4 { top: 110px; left: 10px; animation-delay: 1.5s; font-size: 2.5rem; }
 .f5 { top: 115px; left: 145px; animation-delay: 2s; font-size: 2.5rem; }
+.message-box { margin-top: 20px; padding: 20px; border-radius: 12px; background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border: 1px solid rgba(255, 153, 204, 0.3); min-height: 60px; display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1.05rem; line-height: 1.5; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.4s ease-out; }
 
-/* Kotak Mesej Meluncur (Slide up) */
-.message-box {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 12px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    border: 1px solid rgba(255, 153, 204, 0.3);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.5;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: all 0.4s ease-out;
+.letter-paper { background-color: #fffaf0; color: #5c3a4d; padding: 40px 25px; border-radius: 8px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; line-height: 1.8; margin-top: 30px;}
+.letter-paper::before, .letter-paper::after { content: '🌸'; position: absolute; font-size: 1.2rem; opacity: 0.8; }
+.letter-paper::before { top: 15px; left: 15px; }
+.letter-paper::after { bottom: 15px; right: 15px; }
+.letter-title { color: #cc0052; font-style: italic; margin-top: 0; font-size: 1.3rem;}
+.sign-off { margin-top: 40px; font-weight: bold; color: #cc0052; font-style: italic;}
+
+.polaroid-container { display: flex; flex-direction: column; align-items: center; gap: 40px; margin-top: 40px; }
+.polaroid { background-color: white; padding: 15px 15px 40px 15px; border-radius: 2px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); width: 80%; max-width: 320px; position: relative; transition: transform 0.3s; cursor: pointer; }
+.polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 10; }
+.polaroid::before { content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 90px; height: 30px; background-color: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); backdrop-filter: blur(2px); z-index: 2; }
+.polaroid img { width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 2px; background-color: #eee; }
+.caption { font-family: 'Courier New', Courier, monospace; color: #333; margin: 15px 0 0 0; font-size: 0.95rem; font-weight: bold; }
+.left-tilt { transform: rotate(-4deg); }
+.right-tilt { transform: rotate(4deg); }
+
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; backdrop-filter: blur(5px); }
+.modal.show { opacity: 1; }
+.modal-content { max-width: 90%; max-height: 80%; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); transform: scale(0.8); transition: transform 0.3s ease; }
+.modal.show .modal-content { transform: scale(1); }
+.close-modal { position: absolute; top: 25px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 1001; }
+.close-modal:hover { color: #ff99cc; }
+
+.timeline { position: relative; max-width: 100%; margin: 40px auto 0 auto; padding-left: 20px; border-left: 2px solid rgba(255, 153, 204, 0.3); text-align: left; }
+.timeline-item { position: relative; margin-bottom: 40px; padding-left: 25px; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-icon { position: absolute; left: -33px; top: 0; width: 30px; height: 30px; background-color: #ff4d94; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; box-shadow: 0 0 10px rgba(255, 77, 148, 0.5); }
+.timeline-content { background: rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255, 153, 204, 0.2); }
+.timeline-content h4 { margin: 0 0 8px 0; color: #ffb3d9; font-size: 1.1rem; }
+.timeline-content p { margin: 0; font-size: 0.9rem; line-height: 1.5; opacity: 0.9; }
+
+.music-player { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 153, 204, 0.2); border-radius: 20px; padding: 30px 20px; margin-top: 30px; }
+.vinyl-wrapper { display: flex; justify-content: center; margin-bottom: 25px; }
+.vinyl { width: 120px; height: 120px; background: repeating-radial-gradient(#111 0, #111 4px, #222 5px, #222 6px); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 4px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5); animation: spinVinyl 4s linear infinite; animation-play-state: paused; }
+.vinyl.playing { animation-play-state: running; }
+.vinyl-label { width: 40px; height: 40px; background: #ff4d94; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; border: 2px solid #111; }
+@keyframes spinVinyl { 100% { transform: rotate(360deg); } }
+.player-controls { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+.player-controls button { background: none; border: none; color: #ffb3d9; font-size: 2rem; cursor: pointer; transition: 0.2s; }
+.player-controls button:active { transform: scale(0.9); }
+.song-info { margin-bottom: 25px; }
+.song-info h4 { margin: 0; font-size: 1.2rem; color: #fff; }
+.song-info p { margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.7; }
+.song-list { text-align: left; background: rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 10px; }
+.song-item { padding: 12px 15px; margin-bottom: 5px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-size: 0.9rem; border: 1px solid transparent; }
+.song-item:hover { background: rgba(255, 255, 255, 0.05); }
+.song-item.active { background: rgba(255, 77, 148, 0.2); border-color: rgba(255, 77, 148, 0.5); font-weight: bold; }
+
+/* --- JAR OF NOTES (DESIGN TERKINI) --- */
+.jar-wrapper { display: flex; flex-direction: column; align-items: center; margin-top: 40px; position: relative; }
+
+.jar { 
+    position: relative; 
+    width: 140px; height: 180px; 
+    background: rgba(255, 255, 255, 0.1); 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 20px 20px 60px 60px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+    backdrop-filter: blur(8px);
+    margin-bottom: 30px; 
+    overflow: hidden; /* PENTING: Supaya surat tak terkeluar */
 }
+
+.jar::after {
+    content: ''; position: absolute; top: 10px; left: 15px;
+    width: 30px; height: 140px; background: rgba(255, 255, 255, 0.15); border-radius: 10px;
+}
+
+.jar-lid { 
+    position: absolute; top: -20px; left: -10px; 
+    width: 160px; height: 30px; 
+    background: linear-gradient(to right, #ff4d94, #ff80ab); 
+    border-radius: 10px; 
+}
+
+.jar-notes { 
+    position: absolute; top: 0; left: 0; 
+    width: 100%; height: 100%; 
+}
+
+/* Surat bertaburan rawak */
+.paper-note { 
+    position: absolute;
+    width: 20px; height: 25px; 
+    background: #fff; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.jar.shaking { animation: shakeJarAnim 0.5s ease-in-out; }
+@keyframes shakeJarAnim { 
+    0%, 100% { transform: translateX(0); } 
+    25% { transform: translateX(-10px) rotate(-10deg); } 
+    75% { transform: translateX(10px) rotate(10deg); } 
+}
+
+.shake-btn { 
+    padding: 12px 30px; 
+    background: linear-gradient(135deg, #ff4d94, #cc0052); 
+    color: white; border: none; border-radius: 30px; 
+    cursor: pointer; font-family: 'Georgia', serif; font-weight: bold; 
+    box-shadow: 0 5px 15px rgba(255, 77, 148, 0.4); 
+    transition: 0.3s; 
+}
+
+.shake-btn:hover { transform: scale(1.05); }
+
+.closing-section { border-bottom: none; padding-top: 40px; padding-bottom: 80px; }
+.closing-title { font-size: 2.5rem; color: #ffb3d9; margin: 20px 0; font-family: 'Times New Roman', Times, serif; font-weight: normal; line-height: 1.2; }
+.closing-p { font-size: 1rem; opacity: 0.8; line-height: 1.6; margin-bottom: 40px; padding: 0 20px; }

@@ -12,7 +12,6 @@
 
     <div id="giftScreen">
         <p class="gift-hint">Tap the gift box to open it 🎁</p>
-        
         <div class="gift-wrapper" id="giftWrapper" onclick="openGift()">
             <div class="sparkles">✨ ✨ ✨</div>
             <div class="gift-box">
@@ -33,44 +32,160 @@
             <h1 class="bday-title">Happy Birthday<br>Sayang</h1>
             <div class="divider"></div>
             <span class="small-text">THE MOST SPECIAL DAY</span>
-            
-            <div class="scroll-down">
-                <p>SCROLL</p>
-                <span>↓</span>
-            </div>
+            <div class="scroll-down"><p>SCROLL</p><span>↓</span></div>
         </header>
 
         <section class="digital-bouquet">
             <span class="small-text">— MY FIRST GIFT —</span>
             <h2>A Digital Bouquet</h2>
             <p class="subtitle">Each flower holds a little message just for you</p>
-            
             <div class="vase-container">
-                <!-- Batang Bunga -->
-                <div class="stem s1"></div>
-                <div class="stem s2"></div>
-                <div class="stem s3"></div>
-                <div class="stem s4"></div>
-                <div class="stem s5"></div>
-
-                <!-- Bunga (Disusun semula posisinya) -->
-                <div class="flower f1" onclick="showFlowerMsg('You are the finest rose that ever bloomed — full of love and unmatched beauty. 🌹')">🌹</div>
-                <div class="flower f2" onclick="showFlowerMsg('Like a sunflower, you always turn toward the light and share your warmth. 🌻')">🌻</div>
-                <div class="flower f3" onclick="showFlowerMsg('You are as beautiful as cherry blossoms — lovely and bringing joy wherever you go. 🌸')">🌸</div>
-                <div class="flower f4" onclick="showFlowerMsg('May your life always be filled with colorful moments just like these flowers. 🌷')">🌷</div>
+                <div class="stem s1"></div><div class="stem s2"></div><div class="stem s3"></div><div class="stem s4"></div><div class="stem s5"></div>
+                <div class="flower f1" onclick="showFlowerMsg('You are the finest rose that ever bloomed — full of love. 🌹')">🌹</div>
+                <div class="flower f2" onclick="showFlowerMsg('Like a sunflower, you always share your warmth. 🌻')">🌻</div>
+                <div class="flower f3" onclick="showFlowerMsg('You are as beautiful as cherry blossoms. 🌸')">🌸</div>
+                <div class="flower f4" onclick="showFlowerMsg('May your life always be filled with colorful moments. 🌷')">🌷</div>
                 <div class="flower f5" onclick="showFlowerMsg('I am grateful for every single day I get to spend with you. 🌼')">🌼</div>
-                
-                <!-- Pasu Bentuk Mickey -->
                 <div class="vase"></div>
             </div>
+            <div id="flowerMessageContainer" class="message-box"><span style="opacity: 0.5;">Touch each flower to reveal its message</span></div>
+        </section>
 
-            <!-- Kotak Mesej -->
-            <div id="flowerMessageContainer" class="message-box">
-                <span style="opacity: 0.5;">Touch each flower to reveal its message</span>
+        <section class="letter-section">
+            <span class="small-text">— FROM MY HEART —</span>
+            <h2>A Letter For You</h2>
+            <div class="letter-paper">
+                <h3 class="letter-title">My dearest Sayang,</h3>
+                <p>On this most special day, I want you to know that every single day with you is a gift beyond measure. You bring light into every corner of my life.</p>
+                <p>Your laughter is the most beautiful music I have ever heard. Thank you for being you — with all your uniqueness and a spirit that never fades.</p>
+                <p>On this birthday of yours, I wish that all your dreams come true. You deserve every beautiful thing this world has to offer.</p>
+                <p class="sign-off">With all my love,<br>Akmal</p>
             </div>
         </section>
 
-        <div style="height: 50vh;"></div>
+        <section class="photo-memories">
+            <span class="small-text">— A COLLECTION OF MEMORIES —</span>
+            <h2>Our Photo Memories</h2>
+            <p class="subtitle">Every picture holds a beautiful story</p>
+            <div class="polaroid-container">
+                <div class="polaroid left-tilt" onclick="openModal('gambar/gambar1.jpg')">
+                    <img src="gambar/gambar1.jpg" alt="Memory 1">
+                    <p class="caption">Our beautiful moments together ✨</p>
+                </div>
+                <div class="polaroid right-tilt" onclick="openModal('gambar/gambar2.jpg')">
+                    <img src="gambar/gambar2.jpg" alt="Memory 2">
+                    <p class="caption">I will always cherish this ❤️</p>
+                </div>
+                <div class="polaroid left-tilt" onclick="openModal('gambar/gambar3.jpg')">
+                    <img src="gambar/gambar3.jpg" alt="Memory 3">
+                    <p class="caption">To many more memories with you 🌸</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <span class="small-text">— OUR JOURNEY —</span>
+            <h2>Memories We've Written Together</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">✨</div>
+                    <div class="timeline-content">
+                        <h4>First Time We Met</h4>
+                        <p>The day my world seemed to spin a little faster and everything felt different.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">💬</div>
+                    <div class="timeline-content">
+                        <h4>Our First Conversation</h4>
+                        <p>The first words spoken, the first laughter shared — the beginning of thousands of stories.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🍃</div>
+                    <div class="timeline-content">
+                        <h4>Beautiful Silence Together</h4>
+                        <p>The comfortable quiet beside you feels warmer than a thousand words ever could.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎂</div>
+                    <div class="timeline-content">
+                        <h4>Your Special Birthday</h4>
+                        <p>Celebrating you, our journey, and all the wonder you have brought into my life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="playlist-section">
+            <span class="small-text">— OUR SONGS —</span>
+            <h2>Special Playlist</h2>
+            <p class="subtitle">Songs that always remind me of you</p>
+            
+            <div class="music-player">
+                <audio id="bgMusic" src="lagu/lagu1.mp3"></audio>
+                
+                <div class="vinyl-wrapper">
+                    <div class="vinyl" id="vinyl">
+                        <div class="vinyl-label">🌸</div>
+                    </div>
+                </div>
+                <div class="player-controls">
+                    <button onclick="prevSong()">⏮</button>
+                    <button onclick="togglePlay()" id="playBtn">▶️</button>
+                    <button onclick="nextSong()">⏭</button>
+                </div>
+                <div class="song-info">
+                    <h4 id="songTitle">Shape Of My Heart</h4>
+                    <p id="songArtist">Backstreet Boys</p>
+                </div>
+                <div class="song-list">
+                    <div class="song-item active" id="song1" onclick="selectSong(1, 'Shape Of My Heart', 'Backstreet Boys')">🎵 Shape Of My Heart</div>
+                    <div class="song-item" id="song2" onclick="selectSong(2, 'Angel Baby', 'Troye Sivan')">🎵 Angel Baby</div>
+                    <div class="song-item" id="song3" onclick="selectSong(3, 'My Love', 'Westlife')">🎵 My Love</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="jar-section">
+            <span class="small-text">— FROM MY HEART TO YOURS —</span>
+            <h2>Reasons I'm Grateful</h2>
+            <p class="subtitle">Shake the jar and pick a note 🌸</p>
+            <div class="jar-wrapper">
+                <div class="jar" id="jar">
+                    <div class="jar-lid"></div>
+                    <div class="jar-notes">
+    <div class="paper-note" style="top: 100px; left: 20px; transform: rotate(10deg);">💌</div>
+    <div class="paper-note" style="top: 120px; left: 50px; transform: rotate(-20deg);">💌</div>
+    <div class="paper-note" style="top: 90px; left: 80px; transform: rotate(5deg);">💌</div>
+    <div class="paper-note" style="top: 130px; left: 100px; transform: rotate(-10deg);">💌</div>
+    <div class="paper-note" style="top: 110px; left: 30px; transform: rotate(15deg);">💌</div>
+    <div class="paper-note" style="top: 140px; left: 70px; transform: rotate(-5deg);">💌</div>
+    <div class="paper-note" style="top: 100px; left: 110px; transform: rotate(20deg);">💌</div>
+    <div class="paper-note" style="top: 125px; left: 10px; transform: rotate(-25deg);">💌</div>
+    <div class="paper-note" style="top: 135px; left: 50px; transform: rotate(30deg);">💌</div>
+    <div class="paper-note" style="top: 115px; left: 90px; transform: rotate(-15deg);">💌</div>
+</div>
+                </div>
+                <button class="shake-btn" onclick="shakeJar()">Shake the Jar</button>
+                <div id="jarMessage" class="message-box" style="display: none; margin-top: 30px;"></div>
+            </div>
+        </section>
+
+        <section class="closing-section">
+            <span class="small-text">🌸 With all my heart 🌸</span>
+            <h1 class="closing-title">May your life<br>always be filled<br>with flowers</h1>
+            <p class="closing-p">Happy birthday, Sayang. May your days always be filled with love, happiness, and all the beautiful things you deserve.</p>
+            <span class="small-text">— With love that never runs out 🤍 —</span>
+        </section>
+
+        <div style="height: 10vh;"></div>
+    </div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlargedImg">
     </div>
 
     <script src="script.js"></script>
