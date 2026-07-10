@@ -1,137 +1,239 @@
-/* --- script.js (KOSONGKAN FAIL ASAL & TAMPAL KOD PENUH INI) --- */
+// ==========================================
+// 1. LOGIK UNTUK LAMAN LOGIN (index.html)
+// ==========================================
+const loginBtn = document.getElementById('loginBtn');
+const passwordInput = document.getElementById('passwordInput');
 
-// --- 1. SET TARIKH COUNTDOWN (Sila tukar ke tarikh anniversary korang) ---
-// Format: Tahun, Bulan (0 = Jan, 1 = Feb, etc.), Hari, Jam, Minit, Saat
-const tarikhAnniversary = new Date(2026, 4, 2, 0, 0, 0).getTime();
+if (loginBtn && passwordInput) {
+    function attemptLogin() {
+        const errorMsg = document.getElementById('errorMsg');
+        const betulPassword = "sayang"; // <-- TUKAR PASSWORD DI SINI JIKA PERLU
 
-//================= A. MULA & ANIMASI PASSPORT (KLIK PERTAMA) =================//
-function bukaWebsite() {
-    // 1. Mula mainkan lagu
-    document.getElementById('bg-music').play();
-    
-    // 2. Tambah class 'buka' kat Lock Screen & Main Content
-    document.getElementById('lock-screen').classList.add('buka');
-    document.getElementById('main-content').classList.add('buka');
-    
-    // 3. Bila Lock Screen dah selesai slide (sekitar 1.2s), sorok terus
-    setTimeout(() => {
-        document.getElementById('lock-screen').style.display = 'none';
-    }, 1200); // 1.2s padan dengan CSS transition
-    
-    // 4. Hidupkan galeri swipe
-    initSwiper();
-    
-    // 5. Mula hidupkan countdown
-    mulaCountdown();
-}
+        if (passwordInput.value === betulPassword) {
+            sessionStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'surprise.html';
+        } else {
+            errorMsg.style.opacity = '1';
+            setTimeout(() => {
+                errorMsg.style.opacity = '0';
+            }, 2000);
+        }
+    }
 
-//================= B. FUNGSI MODALS (POPUPS) =================//
-function showModal(modalId) {
-    document.getElementById(modalId).classList.add('tunjuk');
-}
+    loginBtn.addEventListener('click', attemptLogin);
 
-function hideModal(modalId) {
-    document.getElementById(modalId).classList.remove('tunjuk');
-}
-
-//================= C. FUNGSI SWIPER (GALERI JALAN) =================//
-//================= C. FUNGSI SWIPER (GALERI AUTO SLIDE) =================//
-function initSwiper() {
-    const swiper = new Swiper('.mySwiper', {
-        slidesPerView: 1, 
-        spaceBetween: 10, 
-        loop: true, 
-        
-        // --- INI KOD BARU UNTUK AUTO SLIDE ---
-        autoplay: {
-            delay: 3000, // Gambar akan tukar setiap 3 saat
-            disableOnInteraction: false, // PENTING: Supaya auto-slide TAK BERHENTI walaupun kita dah tekan butang manual
-        },
-        // -------------------------------------
-
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
+    passwordInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            attemptLogin();
+        }
     });
 }
 
-//================= D. FUNGSI COUNTDOWN (TIMER HIDUP) =================//
-function mulaCountdown() {
+// ==========================================
+// 2. LOGIK UNTUK LAMAN SURPRISE (surprise.html)
+// ==========================================
+const matrixCanvas = document.getElementById('matrixCanvas');
+
+if (matrixCanvas) {
     
-    // Fungsi ni akan run setiap saat
-    const interval = setInterval(function() {
+    if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'index.html'; 
+    } else {
+        startSurprise(); 
+    }
+
+    function startSurprise() {
+        const ctx = matrixCanvas.getContext('2d');
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const nums = '0123456789';
+        const fontSize = 16;
+        const columns = matrixCanvas.width / fontSize;
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+            ctx.fillStyle = '#ff66b2'; 
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = nums.charAt(Math.floor(Math.random() * nums.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+        const matrixInterval = setInterval(drawMatrix, 30);
+
+        const textContainer = document.getElementById('textContainer');
+        const mainCard = document.getElementById('mainCard');
+        let count = 3;
         
-        // Dapatkan tarikh sekarang dalam milisaat
-        const sekarang = new Date().getTime();
+        const countdownInterval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                textContainer.innerText = count;
+            } else if (count === 0) {
+                textContainer.innerText = "HAPPY\nBIRTHDAY\nSAYANG";
+            } else if (count === -2) {
+                textContainer.style.opacity = '0';
+                matrixCanvas.style.opacity = '0';
+            } else if (count === -3) {
+                clearInterval(countdownInterval);
+                clearInterval(matrixInterval);
+                mainCard.style.opacity = '1';
+                mainCard.style.pointerEvents = 'auto'; 
+                
+                setupPhase3();
+            }
+        }, 1000); 
+
+        window.addEventListener('resize', () => {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+        });
+    }
+
+    // ==========================================
+    // 3. FUNGSI UNTUK FASA BINTANG & SAMPUL SURAT
+    // ==========================================
+    function setupPhase3() {
+        const starsContainer = document.getElementById('starsContainer');
+        if(starsContainer) {
+            for (let i = 0; i < 150; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        setTimeout(() => {
+            const content = document.getElementById('surpriseContent');
+            if(content) content.style.opacity = '1';
+        }, 800); 
+    }
+
+    window.openEnvelope = function() {
+        const envelope = document.getElementById('myEnvelope');
+        const hintText = document.querySelector('.hint');
         
-        // Jarak dalam milisaat antara sekarang & anniversary
-        const jarakMilisaat = tarikhAnniversary - sekarang;
+        if (envelope) {
+            envelope.classList.toggle('open');
+            
+            if (hintText) {
+                if (envelope.classList.contains('open')) {
+                    hintText.innerText = "Tap again to close";
+                } else {
+                    hintText.innerText = "Tap the heart to open";
+                }
+            }
+        }
+    };
+
+    // ==========================================
+    // 4. FUNGSI SELAK BUKU REAL-TIME (SWIPE 3D)
+    // ==========================================
+    let currentPageIdx = 1;
+    const maxPages = 3; 
+    let startX = 0;
+    let isDragging = false;
+    let activePage = null;
+    let initialAngle = 0;
+
+    const flipbook = document.getElementById('flipbook');
+
+    if (flipbook) {
+        flipbook.addEventListener('touchstart', handleStart, {passive: false});
+        flipbook.addEventListener('touchmove', handleMove, {passive: false});
+        flipbook.addEventListener('touchend', handleEnd);
         
-        // Kalau anniversary dah lepas, matikan countdown
-        if (jarakMilisaat < 0) {
-            clearInterval(interval);
-            document.getElementById('days').innerHTML = "00";
-            document.getElementById('hours').innerHTML = "00";
-            document.getElementById('minutes').innerHTML = "00";
+        flipbook.addEventListener('mousedown', handleStart);
+        window.addEventListener('mousemove', handleMove); 
+        window.addEventListener('mouseup', handleEnd);
+    }
+
+    function handleStart(e) {
+        e.stopPropagation(); 
+        
+        isDragging = true;
+        startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        activePage = null; 
+    }
+
+    function handleMove(e) {
+        if (!isDragging) return;
+        
+        let currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+        let deltaX = currentX - startX;
+
+        if (!activePage) {
+            if (deltaX < 0 && currentPageIdx <= maxPages) { 
+                activePage = document.getElementById('page' + currentPageIdx);
+                initialAngle = 0;
+            } else if (deltaX > 0 && currentPageIdx > 1) { 
+                activePage = document.getElementById('page' + (currentPageIdx - 1));
+                initialAngle = -180;
+            } else {
+                return; 
+            }
+            if(activePage) activePage.classList.remove('animating'); 
+        }
+
+        e.preventDefault(); 
+
+        let containerWidth = flipbook.offsetWidth;
+        let swipePercent = deltaX / containerWidth; 
+        
+        let degrees = initialAngle + (swipePercent * 180);
+        
+        if (degrees > 0) degrees = 0;
+        if (degrees < -180) degrees = -180;
+        
+        activePage.style.transform = `rotateY(${degrees}deg)`;
+    }
+
+    function handleEnd(e) {
+        if (!isDragging || !activePage) {
+            isDragging = false;
             return;
         }
+        isDragging = false;
         
-        // Kiraan matematik untuk tukar milisaat ke hari, jam, etc.
-        const kiraHari = Math.floor(jarakMilisaat / (1000 * 60 * 60 * 24));
-        const kiraJam = Math.floor((jarakMilisaat % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const kiraMinit = Math.floor((jarakMilisaat % (1000 * 60 * 60)) / (1000 * 60));
+        activePage.classList.add('animating');
         
-        // Update dalam fail HTML
-        document.getElementById('days').innerHTML = formatNombor(kiraHari);
-        document.getElementById('hours').innerHTML = formatNombor(kiraJam);
-        document.getElementById('minutes').innerHTML = formatNombor(kiraMinit);
+        let currentTransform = activePage.style.transform;
+        let currentDeg = parseFloat(currentTransform.replace('rotateY(', '').replace('deg)', ''));
         
-    }, 1000); // 1000ms = 1s
-}
-
-// Fungsi tambahan untuk pastikan nombor tu ada dua digit (contoh: 05, 12)
-function formatNombor(nombor) {
-    return nombor < 10 ? "0" + nombor : nombor;
-}
-
-//================= E. FUNGSI HANTAR BORANG & POP-UP SUKSES =================//
-const form = document.getElementById("rsvp-form");
-const submitBtn = document.getElementById("submit-btn");
-
-form.addEventListener("submit", async function(event) {
-    event.preventDefault(); // Halang form dari buka page baru
-    
-    submitBtn.innerHTML = "Tunggu kejap babyyy... ⏳"; // Tukar tulisan butang
-    submitBtn.disabled = true; // Kunci butang elak spam
-    
-    const data = new FormData(event.target);
-    
-    try {
-        const response = await fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        });
-        
-        if (response.ok) {
-            // Kalau berjaya hantar, tunjuk Pop-up!
-            document.getElementById("success-popup").classList.add('tunjuk');
-            form.reset(); // Kosongkan borang
-            submitBtn.innerHTML = "Hantar Jawapan ❤️";
-            submitBtn.disabled = false;
+        if (initialAngle === 0) {
+            if (currentDeg < -45) { 
+                activePage.style.transform = `rotateY(-180deg)`;
+                currentPageIdx++;
+            } else { 
+                activePage.style.transform = `rotateY(0deg)`;
+            }
         } else {
-            alert("Alamak, ada masalah sikit. Cuba tekan hantar lagi sekali baby.");
-            submitBtn.innerHTML = "Hantar Jawapan ❤️";
-            submitBtn.disabled = false;
+            if (currentDeg > -135) { 
+                activePage.style.transform = `rotateY(0deg)`;
+                currentPageIdx--;
+            } else { 
+                activePage.style.transform = `rotateY(-180deg)`;
+            }
         }
-    } catch (error) {
-        alert("Alamak, internet lambat sikit rasanya. Cuba lagi.");
-        submitBtn.innerHTML = "Hantar Jawapan ❤️";
-        submitBtn.disabled = false;
+        activePage = null; 
     }
-});
+}
