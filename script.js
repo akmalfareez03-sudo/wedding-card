@@ -1,8 +1,10 @@
-// PIN LOGIC
+// ==========================================
+// 1. LOGIK UNTUK LAMAN PIN (index.html)
+// ==========================================
 const pinScreen = document.getElementById('pinScreen');
 if (pinScreen) {
     let currentPin = "";
-    const correctPin = "140700";
+    const correctPin = "140700"; // PIN korang
 
     window.addNumber = function(num) {
         if (currentPin.length < 6) {
@@ -40,8 +42,20 @@ if (pinScreen) {
     }
 }
 
-// MAIN PAGE LOGIC
+// ==========================================
+// 2. LOGIK UNTUK MAIN PAGE (main.html)
+// ==========================================
 const giftScreen = document.getElementById('giftScreen');
+
+// Deklarasi pemboleh ubah muzik
+let isPlaying = false; 
+let currentSongIdx = 1;
+const playlist = [
+    { id: 1, title: 'Until I Found You', artist: 'Stephen Sanchez' },
+    { id: 2, title: 'Just The Way You Are', artist: 'Bruno Mars' },
+    { id: 3, title: 'Lover', artist: 'Taylor Swift' }
+];
+
 if (giftScreen) {
     if (sessionStorage.getItem('isLoggedIn') !== 'true') window.location.href = 'index.html';
 
@@ -53,8 +67,9 @@ if (giftScreen) {
 
         giftWrapper.classList.add('opened');
         
-        // Autoplay lagu 1
-        if(bgMusic) bgMusic.play().catch(e => console.log("Audio block"));
+        // Autoplay lagu 1 bila hadiah dibuka
+        // Autoplay lagu 1 bila kotak hadiah dibuka
+    selectSong(1);
 
         setTimeout(() => {
             giftUI.style.opacity = '0';
@@ -62,7 +77,7 @@ if (giftScreen) {
                 giftUI.style.display = 'none';
                 mainContent.style.display = 'block';
                 
-                // Mula hidupkan animation scroll reveal bila hadiah dah dibuka
+                // Mula hidupkan animation scroll reveal
                 initScrollAnimations();
 
                 setTimeout(() => { mainContent.style.opacity = '1'; }, 50);
@@ -73,16 +88,14 @@ if (giftScreen) {
     // --- FUNGSI SCROLL REVEAL ---
     function initScrollAnimations() {
         const observerOptions = {
-            threshold: 0.1, // Berapa banyak elemen masuk skrin sebelum animasi mula (10%)
-            rootMargin: "0px 0px -50px 0px" // Trigger sikit awal sebelum cecah bawah
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px"
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Buang komen di bawah kalau nak elemen tu stay, dan tak animate balik bila scroll atas bawah
-                    // observer.unobserve(entry.target); 
                 } else {
                     entry.target.classList.remove('is-visible');
                 }
@@ -111,8 +124,7 @@ if (giftScreen) {
         setTimeout(() => { modal.style.display = 'none'; }, 300);
     };
 
-    // MUSIC PLAYER
-    let isPlaying = true; // Set asal true sebab dia auto-play
+    // --- MUSIC PLAYER LOGIC ---
     window.togglePlay = function() {
         const bgMusic = document.getElementById('bgMusic');
         const vinyl = document.getElementById('vinyl');
@@ -120,35 +132,90 @@ if (giftScreen) {
         
         if (isPlaying) {
             bgMusic.pause();
-            vinyl.classList.remove('playing');
-            playBtn.innerText = '▶️';
+            if(vinyl) vinyl.classList.remove('playing');
+            if(playBtn) playBtn.innerText = '▶️';
         } else {
-            bgMusic.play();
-            vinyl.classList.add('playing');
-            playBtn.innerText = '⏸️';
+            bgMusic.play().then(() => {
+                if(vinyl) vinyl.classList.add('playing');
+                if(playBtn) playBtn.innerText = '⏸️'; 
+            }).catch(e => console.log("Gagal main audio: ", e));
         }
         isPlaying = !isPlaying;
     };
 
-    window.selectSong = function(id, title, artist) {
+    window.selectSong = function(id) {
+        const song = playlist.find(s => s.id === id);
+        if (!song) return;
+
+        currentSongIdx = id;
+
+        // Tukar sumber lagu dan teks info
         const bgMusic = document.getElementById('bgMusic');
         bgMusic.src = `lagu/lagu${id}.mp3`;
-        document.getElementById('songTitle').innerText = title;
-        document.getElementById('songArtist').innerText = artist;
-        isPlaying = false; // Reset sebelum trigger play balik
-        togglePlay();
+        document.getElementById('songTitle').innerText = song.title;
+        document.getElementById('songArtist').innerText = song.artist;
+
+        // Highlight lagu aktif
+        document.querySelectorAll('.song-item').forEach(el => el.classList.remove('active'));
+        const activeElem = document.getElementById('song' + id);
+        if (activeElem) activeElem.classList.add('active');
+
+        // Mainkan lagu secara automatik
+        const vinyl = document.getElementById('vinyl');
+        const playBtn = document.getElementById('playBtn');
+
+        bgMusic.play().then(() => {
+            isPlaying = true;
+            if(vinyl) vinyl.classList.add('playing');
+            if(playBtn) playBtn.innerText = '⏸️';
+        }).catch(e => {
+            console.log("Audio block: ", e);
+            isPlaying = false;
+        });
     };
 
-    // JAR LOGIC
+    window.nextSong = function() {
+        let nextIdx = currentSongIdx + 1;
+        if (nextIdx > playlist.length) nextIdx = 1; 
+        selectSong(nextIdx);
+    };
+
+    window.prevSong = function() {
+        let prevIdx = currentSongIdx - 1;
+        if (prevIdx < 1) prevIdx = playlist.length;
+        selectSong(prevIdx);
+    };
+
+    // Auto next bila lagu habis
+    const bgMusic = document.getElementById('bgMusic');
+    if(bgMusic) {
+        bgMusic.addEventListener('ended', function() {
+            window.nextSong();
+        });
+    }
+
+    // --- JAR LOGIC (DENGAN BANYAK MESEJ BARU) ---
     window.shakeJar = function() {
         const jar = document.getElementById('jar');
         const msgBox = document.getElementById('jarMessage');
+        
+        // SENARAI BANYAK MESEJ ROMANTIK BARU
         const msgs = [
-            "Your presence alone is enough to make any room feel warmer. 🤍",
-            "Your spirit in the face of challenges inspires me every single day. ✨",
-            "I love the way your eyes crinkle when you laugh. 🌸",
-            "Thank you for always being my safe space to fall back to. 💌",
-            "You always know how to make me smile, even when I don't want to. 🌻"
+            "Everything is beautiful with you. ❤️",
+            "Terima kasih sebab selalu ada untuk saya, sayang. ✨",
+            "I Love Youuuuu. ❤️",
+            "Sayang awak banyakk, Jom kawinnn. Tak sabar nak kawinnn. 💍",
+            "Baby,Kalau awak rasa penat. Stop and Rest okey babyyy. 🥰",
+            "Hati saya cuma untuk awak sorang. 🔒",
+            "Terima kasih sebab pilih saya dalam hidup awakk. 😊",
+            "Awak dah buat yang Terbaik dah. 🌸",
+            "Saya bersyukur setiap hari sebab ada awak. 🌹",
+            "Baby, You're all I need. 🤍",
+            "saya sayang awak sampai bila bilaaa. ∞",
+            "Baby saya kuatt. Sayang awak banyakkkk. 💪",
+            "There is nothing i want more than to make you the happiest person in the world. ✨",
+            "Baby dah besarr.Jangan nangis nangis, tunggu saya dekat dengan awak baru nangis tauu.",
+            "I said, I would never fall unless it's you I fall into. ❤️"
         ];
         
         jar.classList.add('shaking');
@@ -158,9 +225,12 @@ if (giftScreen) {
         setTimeout(() => {
             jar.classList.remove('shaking');
             msgBox.style.display = 'flex';
+            
+            // Pilih mesej rawak
             const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
             msgBox.innerText = randomMsg;
             
+            // Animasi 'Pop' untuk mesej
             setTimeout(() => {
                 msgBox.style.opacity = '1';
                 msgBox.style.transform = 'scale(1)';
@@ -168,14 +238,47 @@ if (giftScreen) {
         }, 500);
     };
 
-    // BUNGA BACKGROUND
+    // --- BUNGA BERTERBANGAN (BACKGROUND) ---
     setInterval(() => {
+        const container = document.getElementById('floatingFlowersContainer');
+        if (!container) return;
+
         const flower = document.createElement('div');
         flower.className = 'floating-flower';
-        flower.innerText = ['🌸', '✨'][Math.floor(Math.random()*2)];
+        flower.innerText = ['🌸', '✨', '🌺'][Math.floor(Math.random()*3)];
         flower.style.left = Math.random() * 100 + 'vw';
         flower.style.animationDuration = (Math.random()*6+6) + 's';
-        document.getElementById('floatingFlowersContainer').appendChild(flower);
+        container.appendChild(flower);
+
         setTimeout(() => flower.remove(), 10000);
     }, 1000);
-}
+}// --- FINAL POPUP LOGIC ---
+    window.openFinalPopup = function() {
+        const modal = document.getElementById('finalPopup');
+        modal.style.display = 'flex';
+        setTimeout(() => { modal.classList.add('show'); }, 10);
+        
+        // Buat efek 'Love' keluar banyak-banyak bila popup dibuka
+        for(let i = 0; i < 15; i++) {
+            setTimeout(spawnHeart, i * 200);
+        }
+    };
+
+    window.closeFinalPopup = function() {
+        const modal = document.getElementById('finalPopup');
+        modal.classList.remove('show');
+        setTimeout(() => { modal.style.display = 'none'; }, 400);
+    };
+
+    function spawnHeart() {
+        const container = document.getElementById('floatingFlowersContainer');
+        if (!container) return;
+        const heart = document.createElement('div');
+        heart.className = 'floating-flower';
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+    }

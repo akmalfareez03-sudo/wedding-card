@@ -39,15 +39,29 @@
             <span class="small-text fade-in-section">— MY FIRST GIFT —</span>
             <h2 class="fade-in-section">A Digital Bouquet</h2>
             <p class="subtitle fade-in-section">Each flower holds a little message just for you</p>
+            
             <div class="vase-container fade-in-section">
-                <div class="stem s1"></div><div class="stem s2"></div><div class="stem s3"></div><div class="stem s4"></div><div class="stem s5"></div>
+                <!-- Batang (7 Stems) -->
+                <div class="stem s1"></div>
+                <div class="stem s2"></div>
+                <div class="stem s3"></div>
+                <div class="stem s4"></div>
+                <div class="stem s5"></div>
+                <div class="stem s6"></div>
+                <div class="stem s7"></div>
+
+                <!-- Bunga (7 Flowers) -->
                 <div class="flower f1" onclick="showFlowerMsg('You are the finest rose that ever bloomed — full of love. 🌹')">🌹</div>
                 <div class="flower f2" onclick="showFlowerMsg('Like a sunflower, you always share your warmth. 🌻')">🌻</div>
                 <div class="flower f3" onclick="showFlowerMsg('You are as beautiful as cherry blossoms. 🌸')">🌸</div>
                 <div class="flower f4" onclick="showFlowerMsg('May your life always be filled with colorful moments. 🌷')">🌷</div>
                 <div class="flower f5" onclick="showFlowerMsg('I am grateful for every single day I get to spend with you. 🌼')">🌼</div>
+                <div class="flower f6" onclick="showFlowerMsg('You stand out effortlessly, bright and wonderful. 🌺')">🌺</div>
+                <div class="flower f7" onclick="showFlowerMsg('Your pure heart brings peace to my soul. 🪷')">🪷</div>
+                
                 <div class="vase"></div>
             </div>
+            
             <div id="flowerMessageContainer" class="message-box fade-in-section"><span style="opacity: 0.5;">Touch each flower to reveal its message</span></div>
         </section>
 
@@ -65,20 +79,20 @@
 
         <section class="photo-memories">
             <span class="small-text fade-in-section">— A COLLECTION OF MEMORIES —</span>
-            <h2 class="fade-in-section">Our Photo Memories</h2>
+            <h2 class="fade-in-section">Photo Memories</h2>
             <p class="subtitle fade-in-section">Every picture holds a beautiful story</p>
             <div class="polaroid-container">
                 <div class="polaroid left-tilt fade-in-section delay-1" onclick="openModal('gambar/gambar1.jpg')">
                     <img src="gambar/gambar1.jpg" alt="Memory 1">
-                    <p class="caption">Our beautiful moments together ✨</p>
+                    <p class="caption">Comelnya baby niiiii ✨</p>
                 </div>
                 <div class="polaroid right-tilt fade-in-section delay-2" onclick="openModal('gambar/gambar2.jpg')">
                     <img src="gambar/gambar2.jpg" alt="Memory 2">
-                    <p class="caption">I will always cherish this ❤️</p>
+                    <p class="caption">ni dah besar sikit. Dah 10 tahun macam tu. Comel lagii ❤️</p>
                 </div>
                 <div class="polaroid left-tilt fade-in-section delay-3" onclick="openModal('gambar/gambar3.jpg')">
                     <img src="gambar/gambar3.jpg" alt="Memory 3">
-                    <p class="caption">To many more memories with you 🌸</p>
+                    <p class="caption">Eiiii dah tua pun comel lagii 🌸</p>
                 </div>
             </div>
         </section>
@@ -137,13 +151,13 @@
                     <button onclick="nextSong()">⏭</button>
                 </div>
                 <div class="song-info">
-                    <h4 id="songTitle">Shape Of My Heart</h4>
-                    <p id="songArtist">Backstreet Boys</p>
+                    <h4 id="songTitle">Until I Found You</h4>
+                    <p id="songArtist">Stephen Sanchez</p>
                 </div>
                 <div class="song-list">
-                    <div class="song-item active" id="song1" onclick="selectSong(1, 'Shape Of My Heart', 'Backstreet Boys')">🎵 Shape Of My Heart</div>
-                    <div class="song-item" id="song2" onclick="selectSong(2, 'Angel Baby', 'Troye Sivan')">🎵 Angel Baby</div>
-                    <div class="song-item" id="song3" onclick="selectSong(3, 'My Love', 'Westlife')">🎵 My Love</div>
+                    <div class="song-item active" id="song1" onclick="selectSong(1)">🎵 Until I Found You</div>
+                    <div class="song-item" id="song2" onclick="selectSong(2)">🎵 Just The Way You Are</div>
+                    <div class="song-item" id="song3" onclick="selectSong(3)">🎵 Lover</div>
                 </div>
             </div>
         </section>
@@ -177,15 +191,34 @@
             <span class="small-text">🌸 With all my heart 🌸</span>
             <h1 class="closing-title">May your life<br>always be filled<br>with flowers</h1>
             <p class="closing-p">Happy birthday, Sayang. May your days always be filled with love, happiness, and all the beautiful things you deserve.</p>
-            <span class="small-text">— With love that never runs out 🤍 —</span>
+            
+            <!-- Butang Final Surprise -->
+            <button class="final-btn" onclick="openFinalPopup()">One Last Surprise 💌</button>
+            
+            <span class="small-text" style="display: block; margin-top: 30px;">— With love that never runs out 🤍 —</span>
         </section>
 
         <div style="height: 10vh;"></div>
     </div>
 
+    <!-- MODAL GAMBAR LAMA -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="enlargedImg">
+    </div>
+
+    <!-- POPUP FINAL SURPRISE BARU -->
+    <div id="finalPopup" class="modal" onclick="closeFinalPopup()">
+        <div class="popup-card" onclick="event.stopPropagation()">
+            <button class="close-popup" onclick="closeFinalPopup()">&times;</button>
+            <h2>Just One More Thing...</h2>
+            <div class="popup-content">
+                <p>Thank you for being the reason I smile every single day.</p>
+                <p>No matter where life takes us, my heart will always find its way back to yours.</p>
+                <p>I love you, forever and always. ✨</p>
+            </div>
+            <div class="heart-animation">❤️</div>
+        </div>
     </div>
 
     <script src="script.js"></script>

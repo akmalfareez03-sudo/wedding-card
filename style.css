@@ -5,16 +5,8 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color:
 #giftScreen, #mainScrollContent, #pinScreen, #loadingScreen { position: relative; z-index: 10; }
 
 /* --- SCROLL REVEAL ANIMATIONS --- */
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: opacity, visibility;
-}
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, visibility; }
+.fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.3s; }
 .delay-3 { transition-delay: 0.5s; }
@@ -69,21 +61,38 @@ body.main-page { overflow-y: auto; }
 .digital-bouquet, .letter-section, .photo-memories, .timeline-section, .playlist-section, .jar-section, .closing-section { text-align: center; margin-top: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255, 153, 204, 0.15); }
 .digital-bouquet h2, .letter-section h2, .photo-memories h2, .timeline-section h2, .playlist-section h2, .jar-section h2 { font-weight: normal; color: #ffb3d9; margin-bottom: 10px; margin-top: 5px; }
 .subtitle { font-size: 0.9rem; opacity: 0.8; margin-bottom: 40px; }
-.vase-container { position: relative; width: 200px; height: 280px; margin: 0 auto; }
+
+/* --- DIGITAL BOUQUET DESIGN BARU (7 BUNGA) --- */
+.vase-container { position: relative; width: 220px; height: 320px; margin: 0 auto; }
 .vase { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 80px; height: 80px; background: linear-gradient(135deg, #ff4d94, #99003d); border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset -10px -10px 15px rgba(0,0,0,0.2); z-index: 5; }
 .vase::before, .vase::after { content: ''; position: absolute; width: 45px; height: 45px; background: linear-gradient(135deg, #ff4d94, #99003d); border-radius: 50%; top: -10px; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2); }
 .vase::before { left: -15px; }
 .vase::after { right: -15px; }
-.stem { position: absolute; bottom: 60px; width: 4px; background-color: #4d9900; border-radius: 2px; z-index: 1; }
-.s1 { height: 160px; left: 100px; transform: rotate(-5deg); }
-.s2 { height: 130px; left: 75px; transform: rotate(-25deg); }
-.s3 { height: 140px; left: 125px; transform: rotate(20deg); }
-.s4 { height: 100px; left: 55px; transform: rotate(-45deg); }
-.s5 { height: 110px; left: 140px; transform: rotate(40deg); }
-.flower { position: absolute; font-size: 3rem; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)); z-index: 6; animation: sway 4s infinite alternate ease-in-out; }
+
+/* Akar Berpusat */
+.stem { position: absolute; bottom: 70px; left: 108px; width: 4px; background-color: #4d9900; border-radius: 2px; z-index: 1; transform-origin: bottom center; }
+.s1 { height: 170px; transform: rotate(0deg); }
+.s2 { height: 160px; transform: rotate(-15deg); }
+.s3 { height: 155px; transform: rotate(15deg); }
+.s4 { height: 140px; transform: rotate(-30deg); }
+.s5 { height: 135px; transform: rotate(30deg); }
+.s6 { height: 110px; transform: rotate(-45deg); }
+.s7 { height: 105px; transform: rotate(45deg); }
+
+/* Bunga diikat pada batang */
+.flower { position: absolute; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4)); z-index: 6; transform-origin: bottom center; animation: flowerSway 3s infinite alternate ease-in-out; }
 .flower:hover { transform: scale(1.2); filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)); animation-play-state: paused; }
-@keyframes sway { 0% { transform: translateY(0px) rotate(-5deg); } 100% { transform: translateY(-8px) rotate(5deg); } }
-.f1 { top: 25px; left: 76px; } .f2 { top: 60px; left: 35px; } .f3 { top: 55px; left: 125px; } .f4 { top: 110px; left: 10px; } .f5 { top: 115px; left: 145px; }
+@keyframes flowerSway { 0% { transform: rotate(-4deg); } 100% { transform: rotate(4deg); } }
+
+/* Koordinat Math untuk letak bunga tepat atas batang */
+.f1 { top: 32px; left: 86px; animation-delay: 0s; font-size: 3.2rem;}    
+.f2 { top: 48px; left: 45px; animation-delay: 0.2s; font-size: 2.8rem;}  
+.f3 { top: 53px; left: 126px; animation-delay: 0.4s; font-size: 2.8rem;} 
+.f4 { top: 81px; left: 16px; animation-delay: 0.6s; font-size: 2.6rem;}  
+.f5 { top: 85px; left: 153px; animation-delay: 0.8s; font-size: 2.6rem;} 
+.f6 { top: 125px; left: 9px; animation-delay: 1.0s; font-size: 2.5rem;}  
+.f7 { top: 128px; left: 160px; animation-delay: 1.2s; font-size: 2.5rem;}
+
 .message-box { margin-top: 20px; padding: 20px; border-radius: 12px; background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)); border: 1px solid rgba(255, 153, 204, 0.3); min-height: 60px; display: flex; align-items: center; justify-content: center; font-style: italic; transition: all 0.4s ease-out; }
 
 .letter-paper { background-color: #fffaf0; color: #5c3a4d; padding: 40px 25px; border-radius: 8px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; line-height: 1.8; margin-top: 30px;}
@@ -134,7 +143,6 @@ body.main-page { overflow-y: auto; }
 .song-item:hover { background: rgba(255, 255, 255, 0.05); }
 .song-item.active { background: rgba(255, 77, 148, 0.2); border-color: rgba(255, 77, 148, 0.5); font-weight: bold; }
 
-/* --- JAR OF NOTES (GLASS GLOSSY DESIGN TERKINI) --- */
 .jar-wrapper { display: flex; flex-direction: column; align-items: center; margin-top: 40px; position: relative;}
 .jar { position: relative; width: 140px; height: 180px; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 20px 20px 60px 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); backdrop-filter: blur(8px); margin-bottom: 30px; overflow: hidden; }
 .jar::after { content: ''; position: absolute; top: 10px; left: 15px; width: 30px; height: 140px; background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
@@ -149,3 +157,80 @@ body.main-page { overflow-y: auto; }
 .closing-section { border-bottom: none; padding-top: 40px; padding-bottom: 80px; }
 .closing-title { font-size: 2.5rem; color: #ffb3d9; margin: 20px 0; font-family: 'Times New Roman', Times, serif; font-weight: normal; line-height: 1.2; }
 .closing-p { font-size: 1rem; opacity: 0.8; line-height: 1.6; margin-bottom: 40px; padding: 0 20px; }
+/* --- FINAL SURPRISE POPUP --- */
+.final-btn {
+    margin-top: 10px;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #ff4d94, #cc0052);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(255, 77, 148, 0.4);
+    transition: 0.3s;
+}
+.final-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 77, 148, 0.6);
+}
+
+.popup-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 153, 204, 0.4);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 85%;
+    width: 320px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+#finalPopup.show .popup-card {
+    transform: scale(1);
+    opacity: 1;
+}
+.popup-card h2 {
+    color: #ffb3d9;
+    margin-top: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+.popup-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #ffd6e8;
+}
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-popup:hover { color: #ff4d94; }
+
+.heart-animation {
+    font-size: 3.5rem;
+    margin-top: 25px;
+    animation: heartbeat 1.2s infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
+}
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.3); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.3); }
+}
